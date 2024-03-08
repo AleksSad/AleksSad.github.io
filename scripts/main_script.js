@@ -90,18 +90,19 @@ function view_stats(data) {
     krus_y_stats.innerHTML   = count_krus_y;
     bss_n_stats.innerHTML    = count_bss_n; 
     krus_n_stats.innerHTML   = count_krus_n;
-    bss_y_h_stats.innerHTML  = count_bss_y_h;
-    bss_y_m_stats.innerHTML  = count_bss_y_m;
-    bss_y_l_stats.innerHTML  = count_bss_y_l;
-    bss_n_h_stats.innerHTML  = count_bss_n_h;
-    bss_n_m_stats.innerHTML  = count_bss_n_m;
-    bss_n_l_stats.innerHTML  = count_bss_n_l;
-    krus_y_h_stats.innerHTML = count_krus_y_h;
-    krus_y_m_stats.innerHTML = count_krus_y_m;
-    krus_y_l_stats.innerHTML = count_krus_y_l;
-    krus_n_h_stats.innerHTML = count_krus_n_h;
-    krus_n_m_stats.innerHTML = count_krus_n_m;
-    krus_n_l_stats.innerHTML = count_krus_n_l;
+    bss_y_h_stats.innerText  = count_bss_y_h;
+    bss_y_m_stats.innerText  = count_bss_y_m;
+    bss_y_l_stats.innerText  = count_bss_y_l;
+    bss_n_h_stats.innerText  = count_bss_n_h;
+    bss_n_m_stats.innerText  = count_bss_n_m;
+    bss_n_l_stats.innerText  = count_bss_n_l;
+    krus_y_h_stats.innerText = count_krus_y_h;
+    krus_y_m_stats.innerText = count_krus_y_m;
+    krus_y_l_stats.innerText = count_krus_y_l;
+    krus_n_h_stats.innerText = count_krus_n_h;
+    krus_n_m_stats.innerText = count_krus_n_m;
+    krus_n_l_stats.innerText = count_krus_n_l;
+    
 
 }
 function view_table(data) {
