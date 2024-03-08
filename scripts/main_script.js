@@ -21,13 +21,7 @@ const krus_n_m_stats = document.getElementById("krus_n_m_stats");
 const krus_n_l_stats = document.getElementById("krus_n_l_stats");
 const all_stats = document.getElementById("all_stats");
 
-function get_data() {
-    readXlsxFile(input.files[0]).then(function (data) {
-        view_stats(data);
-        //view_table(data);
-        // console.log(data);
-    })
-}
+
 function view_stats(data) {
     all_stats.innerHTML = "Всего: " + (data.length - 1);
     var count_bss = 0,
@@ -51,10 +45,11 @@ function view_stats(data) {
         th_bil = 0,
         th_sr = 0,
         th_prior = 0;
-    for (var row = 0; row < data.length; row++) {
-        for (var col = 0; col < data[row].length; col++) {
+        for (var row = 0; row < data.length; row++) {
+            for (var col = 0; col < data[row].length; col++) {
             if (data[0][col] == 'BIL') { th_bil = col; }
             if (data[0][col] == 'Услуга Восстановлена') { th_sr = col; }
+            if (data[0][col] == 'Приоритет') { th_prior = col; }
         }
         var if_bss = data[row][th_bil] == 'BSS',
             if_krus = data[row][th_bil] == 'КРУС',
@@ -82,7 +77,6 @@ function view_stats(data) {
         if (if_l && if_y && if_krus) { count_krus_y_l++;}
         if (if_l && if_n && if_bss)  { count_bss_n_l++;}
         if (if_l && if_n && if_krus) { count_krus_n_l++;}
-        
     }
     bss_stats.innerHTML      = count_bss;
     krus_stats.innerHTML     = count_krus;
@@ -90,17 +84,17 @@ function view_stats(data) {
     krus_y_stats.innerHTML   = count_krus_y;
     bss_n_stats.innerHTML    = count_bss_n; 
     krus_n_stats.innerHTML   = count_krus_n;
-    bss_y_h_stats.textContent = count_bss_y_h;
-    bss_y_m_stats.textContent  = count_bss_y_m;
-    bss_y_l_stats.textContent = count_bss_y_l;
-    bss_n_h_stats.textContent = count_bss_n_h;
-    bss_n_m_stats.textContent = count_bss_n_m;
-    bss_n_l_stats.textContent = count_bss_n_l;
-    krus_y_h_stats.textContent= count_krus_y_h;
-    krus_y_m_stats.textContent= count_krus_y_m;
-    krus_y_l_stats.textContent= count_krus_y_l;
-    krus_n_h_stats.textContent= count_krus_n_h;
-    krus_n_m_stats.textContent= count_krus_n_m;
+    bss_y_h_stats.innerHTML = count_bss_y_h;
+    bss_y_m_stats.innerHTML  = count_bss_y_m;
+    bss_y_l_stats.innerHTML = count_bss_y_l;
+    bss_n_h_stats.innerHTML = count_bss_n_h;
+    bss_n_m_stats.innerHTML = count_bss_n_m;
+    bss_n_l_stats.innerHTML = count_bss_n_l;
+    krus_y_h_stats.innerHTML = count_krus_y_h;
+    krus_y_m_stats.innerHTML = count_krus_y_m;
+    krus_y_l_stats.innerHTML = count_krus_y_l;
+    krus_n_h_stats.innerHTML = count_krus_n_h;
+    krus_n_m_stats.innerHTML = count_krus_n_m;
     krus_n_l_stats.innerHTML = count_krus_n_l;
     
 
