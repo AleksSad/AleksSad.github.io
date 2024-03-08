@@ -39,7 +39,7 @@ function view_stats(data) {
         count_bss_y_h = 0,
         count_krus_y_h = 0,
         count_bss_n_h = 0,
-        count_krus_n_m = 0,
+        count_krus_n_h = 0,
         count_bss_y_m = 0,
         count_krus_y_m = 0,
         count_bss_n_m = 0,
