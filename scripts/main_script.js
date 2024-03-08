@@ -101,7 +101,7 @@ function view_stats(data) {
     krus_y_l_stats.textContent= count_krus_y_l;
     krus_n_h_stats.textContent= count_krus_n_h;
     krus_n_m_stats.textContent= count_krus_n_m;
-    krus_n_l_stats.textContent= count_krus_n_l;
+    krus_n_l_stats.innerText = count_krus_n_l;
     
 
 }
