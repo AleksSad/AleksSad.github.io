@@ -51,6 +51,7 @@ function view_stats(data) {
     for (var row = 0; row < data.length; row++) {
         for (var col = 0; col < data[row].length; col++) {
             if (row == 0) {
+                console.log ('Suck')
                 var option = document.createElement("option");
                 option.value = data[0][col];
                 option.text = data[0][col];
