@@ -128,7 +128,7 @@ function view_filter(filter_th) {
         option.text = arr_filter_td[row];
         selectList.appendChild(option);
     }
-    filter_th_id = filter_th;
+    filter_th_id = data[0].indexOf(filter_th);
     console.log (filter_th_id);
 }
 
@@ -150,7 +150,7 @@ function view_table(filter) {
         } else {
             var tr_table = document.createElement("tr");
             for (var col = 0; col < data[row].length; col++) {
-                if ((data[row][filter_th_id] == filter)) {
+                if (data[0][filter_th_id] == filter) {
                     console.log('Suck')
                     var td_table = document.createElement("td");
                     td_table.style = "border: 1px solid;";
