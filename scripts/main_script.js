@@ -50,6 +50,7 @@ function view_stats(data) {
     var selectList = tbl_filter_th;
     for (var row = 0; row < data.length; row++) {
         for (var col = 0; col < data[row].length; col++) {
+            console.log(data[row].length);
             if (row == 0) {
                 console.log ('Suck')
                 var option = document.createElement("option");
