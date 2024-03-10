@@ -113,15 +113,13 @@ function view_stats(data) {
 function view_filter(filter_th) {
     var selectList = tbl_filter_td;
     tbl_filter_td.innerHTML = '';
-    // console.log(data);
     for (var row = 0; row < data.length; row++) {
         for (var col = 0; col < data[row].length; col++) {
             if ((row != 0) && (arr_filter_td.indexOf(data[row][col]) == "-1") && (data[0][col] == filter_th)) {
                 arr_filter_td.push(data[row][col]);
             }
-        }// else {console.log('Ошибка: Фильтр "', filter, '" не найден')}
+        }
     }
-    // console.log(arr_filter_td);
     for (var row = 0; row < arr_filter_td.length; row++) {
         var option = document.createElement("option");
         option.value = arr_filter_td[row];
@@ -135,7 +133,7 @@ function view_filter(filter_th) {
 
 
 function view_table(filter) {
-    // console.log(data);
+    // console.log(filter);
     output.innerHTML = '';
     var table = document.createElement("table");
     for (var row = 0; row < data.length; row++) {
@@ -150,6 +148,7 @@ function view_table(filter) {
         } else {
             var tr_table = document.createElement("tr");
             for (var col = 0; col < data[row].length; col++) {
+                console.log(data[0][filter_th_id], ' -- ', filter);
                 if (data[0][filter_th_id] == filter) {
                     console.log(data[0][filter_th_id] == filter);
                     var td_table = document.createElement("td");
@@ -157,7 +156,7 @@ function view_table(filter) {
                     td_table.innerHTML = data[row][col];
                     tr_table.appendChild(td_table);
                 }
-                console.log(data[0][filter_th_id] == filter);
+                // console.log(data[0][filter_th_id] == filter);
             }
         }
         table.appendChild(tr_table);
