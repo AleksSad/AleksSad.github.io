@@ -150,7 +150,7 @@ function view_table(filter) {
         } else {
             var tr_table = document.createElement("tr");
             for (var col = 0; col < data[row].length; col++) {
-                if ((data[0][col] == filter_th_id)&&(data[row][filter_th_id] == filter)) {
+                if ((data[row][filter_th_id] == filter)) {
                     console.log('Suck')
                     var td_table = document.createElement("td");
                     td_table.style = "border: 1px solid;";
