@@ -151,12 +151,13 @@ function view_table(filter) {
             var tr_table = document.createElement("tr");
             for (var col = 0; col < data[row].length; col++) {
                 if (data[0][filter_th_id] == filter) {
-                    console.log('Suck')
+                    console.log(data[0][filter_th_id] == filter);
                     var td_table = document.createElement("td");
                     td_table.style = "border: 1px solid;";
                     td_table.innerHTML = data[row][col];
                     tr_table.appendChild(td_table);
                 }
+                console.log(data[0][filter_th_id] == filter);
             }
         }
         table.appendChild(tr_table);
