@@ -112,7 +112,9 @@ function view_stats(data) {
 }
 function view_filter(filter_th) {
     var selectList = tbl_filter_td;
-    tbl_filter_td.innerHTML = '';
+    tbl_filter_td.innerText = '';
+    arr_filter_td = ["Выберите значение..."];
+    console.log(tbl_filter_td);
     for (var row = 0; row < data.length; row++) {
         for (var col = 0; col < data[row].length; col++) {
             if ((row != 0) && (arr_filter_td.indexOf(data[row][col]) == "-1") && (data[0][col] == filter_th)) {
@@ -134,12 +136,13 @@ function view_filter(filter_th) {
 function view_table(filter) {
     output.innerHTML = '';
     var table = document.createElement("table");
+    table.setAttribute ("class", "table table-bordered");
     for (var row = 0; row < data.length; row++) {
         if (row == 0) {
             var tr_table = document.createElement("tr");
             for (var col = 0; col < data[row].length; col++) {
                 var td_table = document.createElement("th");
-                td_table.style = 'font-weight: bold; border: 1px solid;';
+                // td_table.setAttribute("class","");
                 td_table.innerHTML = data[row][col];
                 tr_table.appendChild(td_table);
             }
@@ -149,7 +152,7 @@ function view_table(filter) {
                 if (data[row][filter_th_id] == filter) {
                     console.log(data[row][filter_th_id] == filter);
                     var td_table = document.createElement("td");
-                    td_table.style = "border: 1px solid;";
+                    // td_table.setAttribute("class","");
                     td_table.innerHTML = data[row][col];
                     tr_table.appendChild(td_table);
                 }
