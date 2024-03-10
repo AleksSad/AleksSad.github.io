@@ -150,13 +150,11 @@ function view_table(filter) {
         } else {
             var tr_table = document.createElement("tr");
             for (var col = 0; col < data[row].length; col++) {
-                if ((data[0][col] == filter_th_id)&&(data[row][col] == filter)) {
-                    // console.log(data[row][filter_th_id]);
+                if ((data[0][col] == filter_th_id)&&(data[row][filter_th_id] == filter)) {
                     var td_table = document.createElement("td");
                     td_table.style = "border: 1px solid;";
-                    // if (col != th_comment) { td_table.innerHTML = data[row][col]; }
+                    tr_table.appendChild(td_table);
                 }
-                tr_table.appendChild(td_table);
             }
         }
         table.appendChild(tr_table);
