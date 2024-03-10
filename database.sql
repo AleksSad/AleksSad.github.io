@@ -42,7 +42,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `full_name`, `login`, `email`, `password`, `avatar`) VALUES
-(2, 'Иванов Иван Иванович', 'test', 'test@local.ru', '202cb962ac59075b964b07152d234b70', 'uploads/15698233144.png');
+(1, 'General Developer', 'admin', 'mad@olleks.ru', 'DeD-Mazzay-1702', 'uploads/15698233144.png');
 
 --
 -- Индексы сохранённых таблиц
