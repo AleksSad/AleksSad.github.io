@@ -50,9 +50,9 @@ function view_stats(data) {
     var selectList = tbl_filter_th;
     for (var row = 0; row < data.length; row++) {
         for (var col = 0; col < data[row].length; col++) {
-            console.log(data[row].length);
+            // console.log(data[row].length);
             if (row == 0) {
-                console.log ('Suck')
+                // console.log ('Suck')
                 var option = document.createElement("option");
                 option.value = data[0][col];
                 option.text = data[0][col];
@@ -127,13 +127,11 @@ function view_filter(filter_th) {
         selectList.appendChild(option);
     }
     filter_th_id = data[0].indexOf(filter_th);
-    console.log (filter_th_id);
 }
 
 
 
 function view_table(filter) {
-    // console.log(filter);
     output.innerHTML = '';
     var table = document.createElement("table");
     for (var row = 0; row < data.length; row++) {
@@ -148,15 +146,13 @@ function view_table(filter) {
         } else {
             var tr_table = document.createElement("tr");
             for (var col = 0; col < data[row].length; col++) {
-                console.log(data[0][filter_th_id], ' -- ', filter);
-                if (data[0][filter_th_id] == filter) {
-                    console.log(data[0][filter_th_id] == filter);
+                if (data[row][filter_th_id] == filter) {
+                    console.log(data[row][filter_th_id] == filter);
                     var td_table = document.createElement("td");
                     td_table.style = "border: 1px solid;";
                     td_table.innerHTML = data[row][col];
                     tr_table.appendChild(td_table);
                 }
-                // console.log(data[0][filter_th_id] == filter);
             }
         }
         table.appendChild(tr_table);
