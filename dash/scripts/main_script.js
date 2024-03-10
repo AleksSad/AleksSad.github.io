@@ -153,6 +153,7 @@ function view_table(filter) {
                 if ((data[0][col] == filter_th_id)&&(data[row][filter_th_id] == filter)) {
                     var td_table = document.createElement("td");
                     td_table.style = "border: 1px solid;";
+                    td_table.innerHTML = data[row][col];
                     tr_table.appendChild(td_table);
                 }
             }
