@@ -41,14 +41,26 @@ var count_bss = 0,
     count_bss_y_l = 0,
     count_krus_y_l = 0,
     count_bss_n_l = 0,
-    count_krus_n_l = 0,
-    th_bil = 0,
-    th_sr = 0,
-    th_prior = 0;
+    count_krus_n_l = 0;
 
 var arr_filter_td = [];
-var th_num_tt = 0,
-    th_date_tt = 0;
+
+var th_num_tt = 0,          // '№'
+    th_date_tt = 0,         // 'Дата'
+    th_bil = 0,             // 'BIL'
+    th_sr = 0,              // 'Услуга Восстановлена'
+    th_prior = 0,           // 'Приоритет'
+    th_status = 0,          // 'Статус'
+    th_client = 0,          // 'Клиент'
+    th_address = 0,         // 'Адреса точек'
+    th_appli = 0,           // 'Тип заявителя'
+    th_problem = 0,         // 'Проблема'
+    th_exec1 = 0,           // 'Ответственный'
+    th_exec2 = 0,           // 'Исполнитель'
+    th_descrip = 0,         // 'COMMENTS' (Описание проблемы)
+    th_contract = 0,         // '№ дог'
+    th_tz = 0,              // 'TZ'
+    th_sec = 0;             // ''
 
 function view_stats(data) {
     all_stats.innerHTML = (data.length - 1);
@@ -67,6 +79,17 @@ function view_stats(data) {
             if (data[0][col] == 'Приоритет') { th_prior = col; }
             if (data[0][col] == '№') { th_num_tt = col; }
             if (data[0][col] == 'Дата') { th_date_tt = col; }
+            if (data[0][col] == 'Статус') { th_status = col; }
+            if (data[0][col] == 'Клиент') { th_client = col; }
+            if (data[0][col] == 'Адреса точек') { th_address = col; }
+            if (data[0][col] == 'Тип заявителя') { th_appli = col; }
+            if (data[0][col] == 'Проблема') { th_problem = col; }
+            if (data[0][col] == 'Ответств.отдел') { th_exec1 = col; }
+            if (data[0][col] == 'Исполнитель') { th_exec2 = col; }
+            if (data[0][col] == 'COMMENTS') { th_descrip = col; }
+            if (data[0][col] == '№ дог') { th_contract = col; }
+            if (data[0][col] == 'TZ') { th_tz = col; }
+            if (data[0][col] == 'Сегмент') { th_sec = col; }
         }
         var if_bss = data[row][th_bil] == 'BSS',
             if_krus = data[row][th_bil] == 'КРУС',
@@ -175,20 +198,35 @@ function view_modal(modal_data) {
         modal_status = document.getElementById("modal_status"),
         modal_client = document.getElementById("modal_client"),
         modal_address = document.getElementById("modal_address"),
-        modal_contact = document.getElementById("modal_contact"),
+        modal_bil = document.getElementById("modal_bil"),
         modal_appli = document.getElementById("modal_appli"),
         modal_problem = document.getElementById("modal_problem"),
         modal_exec = document.getElementById("modal_exec"),
         modal_descrip = document.getElementById("modal_descrip"),
-        modal_comment = document.getElementById("modal_comment"),
+        modal_contract = document.getElementById("modal_contract"),
         modal_tz = document.getElementById("modal_tz"),
         modal_sec = document.getElementById("modal_sec");
+        tbl_modal_data = document.getElementById("tbl_modal_data");
+        
 
     for (var row = 0; row < data.length; row++) {
         for (var col = 0; col < data[row].length; col++) {
             if (modal_data == data[row][th_num_tt]) {
+                tbl_modal_data.innerHTML = data[row][th_num_tt];
                 modal_tt.innerHTML = data[row][th_num_tt] +' от ' + data[row][th_date_tt];
                 modal_prior.innerHTML = data[row][th_prior];
+                modal_status.innerHTML = data[row][th_status];
+                modal_client.innerHTML = data[row][th_client];
+                modal_address.innerHTML = data[row][th_address];
+                modal_bil.innerHTML = data[row][th_bil];
+                modal_appli.innerHTML = data[row][th_appli];
+                modal_problem.innerHTML = data[row][th_problem];
+                modal_exec.innerHTML = data[row][th_exec1] +' / '+ data[row][th_exec2];
+                modal_descrip.innerHTML = data[row][th_descrip];
+                modal_contract.innerHTML = data[row][th_contract];
+                modal_tz.innerHTML = data[row][th_tz];
+                modal_sec.innerHTML = data[row][th_sec];
+
             }
         }
     }
