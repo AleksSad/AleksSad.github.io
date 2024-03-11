@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Шаблонизатор</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+    <br>
+    <div class="container">
+        <div class="input-group">
+            <a class="btn btn-success" data-bs-toggle="collapse" href="#form-oto" role="button" aria-expanded="true"
+                aria-controls="form-oto">Шаблон для передачи на ОТО</a>
+            <a class="btn btn-warning" data-bs-toggle="collapse" href="#form-po" role="button" aria-expanded="false"
+                aria-controls="exemple-po">Шаблон для передачи на ПО</a>
+            <a class="btn btn-primary" data-bs-toggle="collapse" href="#telnet" role="button" aria-expanded="false"
+                aria-controls="telnet">Telnet</a>
+        </div><br>
+        <!-- Шаблон для передачи на ОТО -->
+        <div class="multi-collapse collapse show" id="form-oto" style="">
+            <div class="card card-body">
+                <figcaption class="blockquote-footer">
+                    Для ОТО
+                </figcaption>
+                <!-- Контактное лицо -->
+                <div class="input-group">
+                    <span class="input-group-text" id="f_otoh1"><b>Контактное лицо</b></span>
+                    <input type="text" aria-label="Имя" class="form-control" id="f_oto1">
+                </div><br>
+                <!-- Способ информирования о восстановлении и закрытии ТТ -->
+                <div class="input-group">
+                    <span class="input-group-text" id="f_otoh2"><b>Способ информирования о восстановлении и
+                            закрытии
+                            ТТ</b></span>
+                    <input type="text" aria-label="Имя" class="form-control" value="звонок" id="f_oto2">
+                </div><br>
+                <!-- Удобное время для связи -->
+                <div class="input-group">
+                    <span class="input-group-text" id="f_otoh3"><b>Удобное время для связи</b></span>
+                    <select class="form-select" aria-label="Крглосуточно?" id="f_oto3_3">
+                        <option selected="" value="1">с --:-- до --:--</option>
+                        <option value="2">Круглосуточно</option>
+                    </select>
+                    <input type="time" aria-label="Время работы точки от" class="form-control" id="f_oto3_1">
+                    <input type="time" aria-label="Время работы точки до" class="form-control" id="f_oto3_2">
+                </div><br>
+                <!-- Согласие на приостановку -->
+                <div class="input-group">
+                    <span class="input-group-text" id="f_otoh4"><b>Согласие на приостановку</b></span>
+                    <select class="form-select" aria-label="Согласие на приостановку" id="f_oto4">
+                        <option value="" selected=""></option>
+                        <option value="Да">Да</option>
+                        <option value="Нет">Нет</option>
+                    </select>
+                </div><br>
+                <!-- Описание проблемы -->
+                <div class="input-group">
+                    <span class="input-group-text" id="f_otoh5"><b>Описание проблемы</b></span>
+                    <textarea class="form-control" aria-label="Описание проблемы" id="f_oto5"
+                        style="height: 227px;"></textarea>
+                </div><br>
+                <div class="input-group">
+                    <button type="button" class="btn btn-success" id="start_oto">Сформировать</button>
+                    <button type="button" class="btn btn-secondary" id="clear_oto">Очистить форму</button>
+                </div><br>
+
+
+
+                <div id="s_oto1">- Контактное лицо: 89270699131</div>
+                <div id="s_oto2">- Способ информирования о восстановлении и закрытии ТТ: звонок</div>
+                <div id="s_oto3">- Удобное время для связи: с 10:00 до 22:00</div>
+                <div id="s_oto4">- Согласие на приостановку: Нет</div>
+                <div id="s_oto5">- Описание проблемы: <br>Не работает Интернет, IP 46.52.243.115.<br>Был перебой ЭП, по
+                    информации от КК по отключалось району.<br>Со стороны КК - ЭП на об-нии есть, коммутация проверена.
+                    Перестало работать после перебоя ЭП.<br>Схема:<br>ПОРТ ООО НТС "Реал" -&gt; MikroTik RB951Ui-2HnD //
+                    10.213.10.45 // B8:69:F4:12:CE:07 (н/д)<br>Просьба проверить с вашей стороны/передать ОПМ.</div>
+
+            </div>
+
+        </div>
+        <!-- Шаблон для передачи на ПО -->
+        <div class="collapse multi-collapse" id="form-po">
+            <div class="card card-body">
+                <figcaption class="blockquote-footer">
+                    Для ПО
+                </figcaption>
+                <!--Номера-->
+
+                <!-- Контактное лицо -->
+                <div class="input-group">
+                    <span class="input-group-text" id="f_poh1"><b>Контактное лицо</b></span>
+                    <input type="text" aria-label="Имя" class="form-control" id="f_po1">
+                </div><br>
+                <!-- Информирование -->
+                <div class="input-group">
+                    <span class="input-group-text" id="f_poh2"><b>Способ информирования о восстановлении и
+                            закрытии ТТ</b></span>
+                    <input type="text" aria-label="Имя" class="form-control" value="звонок" id="f_po2">
+                </div><br>
+                <!-- Удобное время для связи -->
+                <div class="input-group">
+                    <span class="input-group-text" id="f_poh3"><b>Время работы точки</b></span>
+                    <select class="form-select" aria-label="Крглосуточно?" id="f_po3_3">
+                        <option selected="" value="1">с --:-- до --:--</option>
+                        <option value="2">Круглосуточно</option>
+                    </select>
+                    <input type="time" aria-label="Время работы точки от" class="form-control" id="f_po3_1">
+                    <input type="time" aria-label="Время работы точки до" class="form-control" id="f_po3_2">
+                </div><br>
+                <!-- Согласие на приостановку -->
+                <div class="input-group">
+                    <span class="input-group-text" id="f_poh4"><b>Согласие на приостановку</b></span>
+                    <select class="form-select" aria-label="Согласие на приостановку" id="f_po4">
+                        <option selected=""></option>
+                        <option value="Да">Да</option>
+                        <option value="Нет">Нет</option>
+                    </select>
+                </div><br>
+                <div class="input-group">
+                    <span class="input-group-text" id="f_poh5"><b>Задание на ремонт в рамках ТТ</b></span>
+                    <input type="text" aria-label="Задание на ремонт в рамках ТТ" class="form-control" id="f_po5">
+                </div><br>
+
+                <!-- Описание проблемы -->
+                <div class="input-group">
+                    <span class="input-group-text" id="f_poh5_1"><b>Краткое описание проблемы</b></span>
+                    <textarea class="form-control" aria-label="Краткое описание проблемы" id="f_po5_1"></textarea>
+                </div><br>
+                <div class="input-group">
+                    <span class="input-group-text" id="f_poh5_2"><b>Схема</b></span>
+                    <textarea class="form-control" aria-label="Схема" id="f_po5_2"></textarea>
+                </div><br>
+                <div class="input-group">
+                    <span class="input-group-text" id="f_poh5_3"><b>Место проведения работ</b></span>
+                    <input type="text" aria-label="Место проведения работ" class="form-control" id="f_po5_3">
+                </div><br>
+                <div class="input-group">
+                    <span class="input-group-text" id="f_poh5_4"><b>Список оборудования</b></span>
+                    <input type="text" aria-label="Список оборудования" value="БП, пачкорды, ноутбук, стремянка"
+                        class="form-control" id="f_po5_4">
+                </div><br>
+                <div class="input-group">
+                    <span class="input-group-text" id="f_poh5_5"><b>Действия при ремонте</b></span>
+                    <select class="form-select" aria-label="Действия при ремонте" id="f_po5_5"
+                        onchange="down_menu(this.value);">
+                        <option value="0" selected=""></option>
+                        <option value="1">MikroTik</option>
+                        <option value="2">3G MikroTik</option>
+                        <option value="3">Антенна</option>
+                        <option value="4">Антанна (Юстировка)</option>
+                        <option value="5">Видеонаблюдение</option>
+                    </select>
+                    <textarea class="form-control" aria-label="Действия при ремонте" id="f_po5_6"></textarea>
+                </div><br>
+                <div class="input-group">
+                    <button type="button" class="btn btn-success" id="start_po">Сформировать</button>
+                    <button type="button" class="btn btn-secondary" id="clear_po">Очистить форму</button>
+                </div><br>
+
+
+
+                <div id="s_po1"></div>
+                <div id="s_po2"></div>
+                <div id="s_po3"></div>
+                <div id="s_po4"></div>
+                <div id="s_po5"></div>
+                <div id="s_po5_1"></div>
+                <div id="s_po5_2"></div>
+                <div id="s_po5_3"></div>
+                <div id="s_po5_4"></div>
+                <div id="s_po5_5"></div>
+                <div id="s_po5_6"></div>
+
+            </div>
+
+        </div>
+        <div class="collapse multi-collapse" id="telnet">
+            <div class="card card-body">
+                <!-- Меню -->
+                <div class="input-group">
+                    <a class="btn btn-success" data-bs-toggle="collapse" href="#infinet" role="button"
+                        aria-expanded="false" aria-controls="infinet">InfiNet</a>
+                    <a class="btn btn-warning" data-bs-toggle="collapse" href="#lva" role="button" aria-expanded="false"
+                        aria-controls="lva">ЛВА</a>
+                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#mikrotik" role="button"
+                        aria-expanded="false" aria-controls="mikrotik">MikroTik</a>
+                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#addpac" role="button"
+                        aria-expanded="false" aria-controls="addpac">AddPac</a>
+                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#huawei" role="button"
+                        aria-expanded="false" aria-controls="huawei">Huawei</a>
+                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#qtech" role="button"
+                        aria-expanded="false" aria-controls="qtech">QTECH</a>
+                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#tplink" role="button"
+                        aria-expanded="false" aria-controls="tplink">TP-Link</a>
+                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#gpon" role="button"
+                        aria-expanded="false" aria-controls="gpon">GPON</a>
+                </div><br>
+                <!-- InfiNet -->
+                <div class="collapse multi-collapse" id="infinet">
+                    <div class="card card-body">
+                        <figcaption class="blockquote-footer">
+                            InfiNet
+                        </figcaption>
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Команда</th>
+                                    <th scope="col">Описание</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">qm stat</th>
+                                    <td>Ограничения по трафику</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">mint rf5.0 rcmd -node * -t "**"</th>
+                                    <td>Управление с сектора финика</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">mi map det</th>
+                                    <td>Радиолинк со временем (det)</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">ifc rf5.0 | grep inet</th>
+                                    <td>Выведет IP инфинета для сети Энфорты</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">arp -d &lt; ip&gt;
+                                    </th>
+                                    <td>Очистить ARP по IP</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">route add &lt; подсеть/32&gt;
+                                        &lt; ip шлюза&gt;
+                                    </th>
+                                    <td>Добавить маршрут</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">ping 8.8.8.8 -S &lt; ip шлюза&gt;
+                                    </th>
+                                    <td colspan="2">Пинг со шлюза</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">ifc eth0 / 1</th>
+                                    <td colspan="2">Интерфейс</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">ifc eth0 media ?</th>
+                                    <td colspan="2">Показать виду режима портов и установить нужный</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">co sh sw</th>
+                                    <td colspan="2">VLAN's</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">sw gr * dump</th>
+                                    <td colspan="2">Маки</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">sys log show | grep *</th>
+                                    <td colspan="2">Логи на секторе</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">lo -l eth0</th>
+                                    <td colspan="2">Нагрузка на порту</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">ltest rf5.0 (или rf4.0) &lt;строка node в mi map&gt; -tb -p</th>
+                                    <td colspan="2">Проверка пропускной способности до сектора
+                                        <br><mark>
+                                            eth0 input (Rx) - загрузка от клиента
+                                            <br>eth0 output (Tx) - скачивание клиентом
+                                            <br>если в sw gr eth0:0, то порт растегируется, если без ":", то транком (F)
+                                        </mark>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">restart</th>
+                                    <td colspan="2">Перезагразка</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">switch group 1053 add 6 eth0 rf5.0
+                                        <br>switch group 1053 vlan 1053
+                                        <br>switch group 1053 in-trunk 1
+                                        <br>switch group 1053 start
+                                        <br>config save
+                                    </th>
+                                    <td colspan="2">Добавление свитч группы</td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row"><mark>* - мак<br>** - команда</mark></th>
+                                    <td colspan="2"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- ЛВА -->
+                <div class="collapse multi-collapse" id="lva">
+                    <div class="card card-body">
+                        <figcaption class="blockquote-footer">
+                            ЛВА
+                        </figcaption>
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Команда</th>
+                                    <th scope="col">Описание</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">arp -a</th>
+                                    <td>ARP записи на ЛВА</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">ifconfig</th>
+                                    <td>Линки на портах</td>
+                                </tr>
+                                <tr class="table-success">
+                                    <th scope="row">Проверка сервиса</th>
+                                    <td colspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">ivideon status / stop / start</th>
+                                    <td colspan="2">?</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">sudo service videoserver status</th>
+                                    <td colspan="2">?</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">sudo service videoserver start<br></th>
+                                    <td colspan="2">?</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">exec systemctl status ivideon-server.service</th>
+                                    <td colspan="2">?</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">exec systemctl stop ivideon-server.service</th>
+                                    <td colspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">cat /etc/firewall.conf</th>
+                                    <td colspan="2">Конфиг пробросов</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">sudo sysctl -w net.ipv4.ip_forward=(0/1)</th>
+                                    <td colspan="2">ВКЛ/ВЫКЛ проброса портов</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">df -h</th>
+                                    <td colspan="2">Место на диске</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- MikroTik -->
+                <div class="collapse multi-collapse" id="mikrotik">
+                    <div class="card card-body">
+                        <figcaption class="blockquote-footer">
+                            MikroTik
+                        </figcaption>
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Команда</th>
+                                    <th scope="col">Описание</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">int pr</th>
+                                    <td>Проверка интерфейсов</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">ip address print</th>
+                                    <td colspan="2">IP-адреса на микроте</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">int br host pr where !local / on-interface=ether2</th>
+                                    <td colspan="2">Просмотр маков от клиента</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">int br port pr</th>
+                                    <td colspan="2">Порты в Bridge</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">system resource pr</th>
+                                    <td colspan="2">Uptime</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">/log pr</th>
+                                    <td colspan="2">Логи</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">tool torch ether (1-5)</th>
+                                    <td colspan="2">Трафик на порту</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">tool sniffer quick interface=ether2</th>
+                                    <td colspan="2">?</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">int monitor-traffic ether</th>
+                                    <td colspan="2">?</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">int ether disable/enable ether (1-5)</th>
+                                    <td colspan="2">Отключить/Включить порт</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">ip service pr</th>
+                                    <td colspan="2">открыть web, ssh, winBox</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">tool bandwidth-test IP* user=* password=* protocol=tcp duration=30
+                                        direction=both *</th>
+                                    <td colspan="2">Прокачка между микротами (есть значение transmit/receive)</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">ping 192.168.0.2 routing-table=CAM_INTERNET - принг внешки<br>
+                                        ping ya.ru routing-table=CAM_INTERNET<br>
+                                        ping 79.122.193.1 src-address=79.122.193.27</th>
+                                    <td colspan="2">?</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">int ethernet set auto-negotiation=no ether2<br>
+                                        int ethernet set speed=10M ether2<br>
+                                        int ethernet set full-duplex=no ether2</th>
+                                    <td colspan="2">Зажатие порта в 10half</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- AddPac -->
+                <div class="collapse multi-collapse" id="addpac">
+                    <div class="card card-body">
+                        <figcaption class="blockquote-footer">
+                            AddPac
+                        </figcaption>
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Команда</th>
+                                    <th scope="col">Описание</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">sh gateway</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">sh clock</th>
+                                    <td colspan="2">Uptime</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">sh call h a</th>
+                                    <td colspan="2">История звонков</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">sh dial-p p s</th>
+                                    <td colspan="2">К какому порту присвоен номер</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">sh call a s</th>
+                                    <td colspan="2">Звонок онлайн</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">sh voice port sum</th>
+                                    <td colspan="2">Занятость порта</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">clear voice-port all</th>
+                                    <td colspan="2">Чистка портов</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Huawei -->
+                <div class="collapse multi-collapse" id="huawei">
+                    <div class="card card-body">
+                        <figcaption class="blockquote-footer">
+                            Huawei
+                        </figcaption>
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Команда</th>
+                                    <th scope="col">Описание</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">display mac-address хххх-хххх-хххх / &lt; port&gt;</th>
+                                    <td>Поиск мака на УК по Маку / Порту</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">display interface</th>
+                                    <td>Интерфейс</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">display vlan &lt; vlan&gt;</th>
+                                    <td>Проверка влана на УК</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Qtech -->
+                <div class="collapse multi-collapse" id="qtech">
+                    <div class="card card-body">
+                        <figcaption class="blockquote-footer">
+                            Qtech
+                        </figcaption>
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Команда</th>
+                                    <th scope="col">Описание</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">sh interface ethernet status</th>
+                                    <td>Интерфейсы</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">sh mac-address-table interface ethernet 1/0/1</th>
+                                    <td colspan="2">Мак за портом</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">sh call h a</th>
+                                    <td colspan="2">История звонков</td>
+                                </tr>
+                                <tr class="table-success">
+                                    <th scope="row">conf t</th>
+                                    <td colspan="2">Конфигурирование</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">interface ethernet 1/0/1</th>
+                                    <td colspan="2">Порт</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">shutdown \ no shutdown</th>
+                                    <td colspan="2">Выключить \ включить порт</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">speed-duplex auto/force(10\100\10g\1g-full\half)</th>
+                                    <td colspan="2">Дуплекс</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">quit</th>
+                                    <td colspan="2">Выход из конфигуратора</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- TP-Link -->
+                <div class="collapse multi-collapse" id="tplink">
+                    <div class="card card-body">
+                        <figcaption class="blockquote-footer">
+                            TP-Link
+                        </figcaption>
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Команда</th>
+                                    <th scope="col">Описание</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">show mac address-table interface gigabitEthernet 1/0/2</th>
+                                    <td>Маки за портом</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- GPON -->
+                <div class="collapse multi-collapse" id="gpon">
+                    <div class="card card-body">
+                        <figcaption class="blockquote-footer">
+                            GPON
+                        </figcaption>
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Команда</th>
+                                    <th scope="col">Описание</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">sh gpon onu detail-info gpon-onu_1/1/1:7</th>
+                                    <td>Интерфейс</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+
+        <script>
+            // -----------------------------------------------------------------------------------------------------------------------------------
+
+            // Для ОТО
+            start_oto_but = document.getElementById("start_oto");
+            start_oto_but.addEventListener("click", form_oto);
+            function form_oto() {
+                document.getElementById("s_oto1").innerText = '- ' + document.getElementById("f_otoh1").innerText + ': ' + document.getElementById("f_oto1").value
+                document.getElementById("s_oto2").innerText = '- ' + document.getElementById("f_otoh2").innerText + ': ' + document.getElementById("f_oto2").value
+                switch (document.getElementById("f_oto3_3").value) {
+                    case '1': document.getElementById("s_oto3").innerText = '- ' + document.getElementById("f_otoh3").innerText + ': с ' + document.getElementById("f_oto3_1").value + ' до ' + document.getElementById("f_oto3_2").value; break;
+                    case '2': document.getElementById("s_oto3").innerText = '- ' + document.getElementById("f_otoh3").innerText + ': Круглосуточно'; break;
+                }
+                //document.getElementById("s_oto3").innerText = '- ' + document.getElementById("f_otoh3").innerText + ': с ' + document.getElementById("f_oto3_1").value + ' до ' + document.getElementById("f_oto3_2").value
+                document.getElementById("s_oto4").innerText = '- ' + document.getElementById("f_otoh4").innerText + ': ' + document.getElementById("f_oto4").value
+                document.getElementById("s_oto5").innerText = '- ' + document.getElementById("f_otoh5").innerText + ': \n' + document.getElementById("f_oto5").value
+            }
+            // -----------------------------------------------------------------------------------------------------------------------------------
+
+            // Для ПО
+            start_po_but = document.getElementById("start_po");
+            start_po_but.addEventListener("click", form_po);
+            function form_po() {
+                // 
+                document.getElementById("s_po1").innerText = '- ' + document.getElementById("f_poh1").innerText + ': ' + document.getElementById("f_po1").value
+                document.getElementById("s_po2").innerText = '- ' + document.getElementById("f_poh2").innerText + ': ' + document.getElementById("f_po2").value
+                switch (document.getElementById("f_po3_3").value) {
+                    case '1': document.getElementById("s_po3").innerText = '- ' + document.getElementById("f_poh3").innerText + ': с ' + document.getElementById("f_po3_1").value + ' до ' + document.getElementById("f_po3_2").value; break;
+                    case '2': document.getElementById("s_po3").innerText = '- ' + document.getElementById("f_poh3").innerText + ': Круглосуточно'; break;
+                }
+                // document.getElementById("s_po3").innerText = '- ' + document.getElementById("f_poh3").innerText + ': с ' + document.getElementById("f_po3_1").value + ' до ' + document.getElementById("f_po3_2").value
+                document.getElementById("s_po4").innerText = '- ' + document.getElementById("f_poh4").innerText + ': ' + document.getElementById("f_po4").value
+                document.getElementById("s_po5").innerText = document.getElementById("f_poh5").innerText + ': ' + document.getElementById("f_po5").value
+                document.getElementById("s_po5_1").innerText = '' + document.getElementById("f_poh5_1").innerText + ': \n' + document.getElementById("f_po5_1").value
+                document.getElementById("s_po5_2").innerText = '' + document.getElementById("f_poh5_2").innerText + ': ' + document.getElementById("f_po5_2").value
+                document.getElementById("s_po5_3").innerText = '' + document.getElementById("f_poh5_3").innerText + ': ' + document.getElementById("f_po5_3").value
+                document.getElementById("s_po5_4").innerText = '' + document.getElementById("f_poh5_4").innerText + ': ' + document.getElementById("f_po5_4").value
+                document.getElementById("s_po5_5").innerText = '' + document.getElementById("f_poh5_5").innerText + ': \n' + document.getElementById("f_po5_6").value
+                document.getElementById("s_po5_6").innerText = '\n-После проведения работ необходимо проверить восстановление услуг и работу оборудования, используя средства доступные в @enforta_helper_bot, получить подтверждение от клиента (при возможности)\n-При необходимости сдавать ремонт на номер +73422462288'
+                //console.log (document.getElementById("f_po5_5").value)
+
+
+            }
+            // -----------------------------------------------------------------------------------------------------------------------------------
+
+            // Очистить ОТО
+            clear_oto_but = document.getElementById("clear_oto");
+            clear_oto_but.addEventListener("click", clear_oto);
+            function clear_oto() {
+                document.getElementById("f_oto1").value = "";
+                document.getElementById("f_oto2").value = "звонок";
+                document.getElementById("f_oto3_1").value = "";
+                document.getElementById("f_oto3_2").value = "";
+                document.getElementById("f_oto3_3").value = "1";
+                document.getElementById("f_oto4").value = "";
+                document.getElementById("f_oto5").value = "";
+
+                document.getElementById("s_oto1").innerHTML = "";
+                document.getElementById("s_oto2").innerHTML = "";
+                document.getElementById("s_oto3").innerHTML = "";
+                document.getElementById("s_oto4").innerHTML = "";
+                document.getElementById("s_oto5").innerHTML = "";
+
+            }
+            // -----------------------------------------------------------------------------------------------------------------------------------
+
+            // Очистить ПО
+            clear_po_but = document.getElementById("clear_po");
+            clear_po_but.addEventListener("click", clear_po);
+            function clear_po() {
+                console.log("Suck"); f_po5_1
+                document.getElementById("f_po1").value = "";
+                document.getElementById("f_po2").value = "звонок";
+                document.getElementById("f_po3_1").value = "";
+                document.getElementById("f_po3_2").value = "";
+                document.getElementById("f_po3_3").value = "1";
+                document.getElementById("f_po4").value = "";
+                document.getElementById("f_po5").value = "";
+                document.getElementById("f_po5_1").value = "";
+                document.getElementById("f_po5_2").value = "";
+                document.getElementById("f_po5_3").value = "";
+                document.getElementById("f_po5_4").value = "БП, пачкорды, ноутбук, стремянка";
+                document.getElementById("f_po5_5").value = "0";
+                document.getElementById("f_po5_6").value = "";
+
+                document.getElementById("s_po1").innerHTML = "";
+                document.getElementById("s_po2").innerHTML = "";
+                document.getElementById("s_po3").innerHTML = "";
+                document.getElementById("s_po4").innerHTML = "";
+                document.getElementById("s_po5").innerHTML = "";
+                document.getElementById("s_po5_1").innerHTML = "";
+                document.getElementById("s_po5_2").innerHTML = "";
+                document.getElementById("s_po5_3").innerHTML = "";
+                document.getElementById("s_po5_4").innerHTML = "";
+                document.getElementById("s_po5_5").innerHTML = "";
+                document.getElementById("s_po5_6").innerHTML = "";
+            }
+            // -----------------------------------------------------------------------------------------------------------------------------------
+
+            // Меню ПО "Действия при ремонте"
+            function down_menu(value) {
+                switch (value) {
+                    case '0': document.getElementById("f_po5_6").value = '\n'; break;
+                    case '1': document.getElementById("f_po5_6").value = '- Проверить оборудование, ЭП, коммутацию\n- Перезагрузить\n- При необходимости заменить оборудование/БП/кабель\n- Сверить сетевые реквизиты\n- Демонстрация клиенту'; break;
+                    case '2': document.getElementById("f_po5_6").value = '- Проверить ЭП на устройстве  с/н , коммутации, в случае необходимости замена.\n- Замена симкарты и ЗЛТ антенны,в случае необходимости\n- Юстировка ZLT для хорошего уровня сигнала\n- Удаленная проверка\n- Демонстрация клиенту.'; break;
+                    case '3': document.getElementById("f_po5_6").value = '- Проверка наличия питания перегрузка,проверка коммутации, настроек, замена оборудования при необходимости\n- Проверка Видимости до КРПТ сектора, юстировка\n- Замена СРЕ в порядке IDU-кабель-ODU\n- Удаленная проверка\n- Установка ХР,если не будет возможности поднять основной канал.\n- Демонстрация клиенту'; break;
+                    case '4': document.getElementById("f_po5_6").value = '- Проверка прямой видимости до БС, юстировка, перенос крепления.\n- Проверка наличия питания на  перегрузка,проверка коммутации, настроек, замена оборудования при необходимости\n- При необходимости замена ODU\n- Удаленная проверка\n- Демонстрация клиенту'; break;
+                    case '5': document.getElementById("f_po5_6").value = '- Проверка наличия питания на РМО перезагрузка, проверка коммутации, настроек\n- Замена кабельной трассы до камеры в случае необходимости и самой камеры\n- Замена свитча в случае необходимости, от которого коммутируются камеры\n- Удаленная проверка\n- Демонстрация клиенту'; break;
+                }
+            }
+            // -----------------------------------------------------------------------------------------------------------------------------------
+
+        </script>
+
+
+    </div>
+</body>
+
+</html>
