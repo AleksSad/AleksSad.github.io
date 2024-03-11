@@ -25,7 +25,7 @@ const tbl_filter_td = document.getElementById("tbl-filter_td");
 var arr_filter_td = [];
 
 function view_stats(data) {
-    all_stats.innerHTML = "Всего: " + (data.length - 1);
+    all_stats.innerHTML = (data.length - 1);
     var count_bss = 0,
         count_krus = 0,
         count_bss_y = 0,
