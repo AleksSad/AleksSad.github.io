@@ -109,9 +109,7 @@ function view_stats(data) {
     krus_n_m_stats.innerHTML = count_krus_n_m;
     krus_n_l_stats.innerHTML = count_krus_n_l;
 
-    var work_stats_ = bss_n_stats + krus_n_stats + krus_y_stats;
-    work_stats.innerHTML = work_stats_;
-    work_stats_ = null;
+    work_stats.innerHTML = count_bss_n + count_krus_n + count_krus_y;
     // view_table(data);
 }
 function view_filter(filter_th) {
