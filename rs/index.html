@@ -1,30 +1,36 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Шаблонизатор</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
 </head>
 
 <body>
     <br>
     <div class="container">
         <div class="input-group">
-            <a class="btn btn-success" data-bs-toggle="collapse" href="#form-oto" role="button" aria-expanded="true"
-                aria-controls="form-oto">Шаблон для передачи на ОТО</a>
+            <a class="btn btn-success collapsed" data-bs-toggle="collapse" href="#form-oto" role="button"
+                aria-expanded="false" aria-controls="form-oto">Шаблон для передачи на ОТО</a>
             <a class="btn btn-warning" data-bs-toggle="collapse" href="#form-po" role="button" aria-expanded="false"
                 aria-controls="exemple-po">Шаблон для передачи на ПО</a>
             <a class="btn btn-primary" data-bs-toggle="collapse" href="#telnet" role="button" aria-expanded="false"
                 aria-controls="telnet">Telnet</a>
+
         </div><br>
+
         <!-- Шаблон для передачи на ОТО -->
-        <div class="multi-collapse collapse show" id="form-oto" style="">
+        <div class="multi-collapse collapse" id="form-oto" style="">
             <div class="card card-body">
                 <figcaption class="blockquote-footer">
                     Для ОТО
                 </figcaption>
+
+
                 <!-- Контактное лицо -->
                 <div class="input-group">
                     <span class="input-group-text" id="f_otoh1"><b>Контактное лицо</b></span>
@@ -59,8 +65,7 @@
                 <!-- Описание проблемы -->
                 <div class="input-group">
                     <span class="input-group-text" id="f_otoh5"><b>Описание проблемы</b></span>
-                    <textarea class="form-control" aria-label="Описание проблемы" id="f_oto5"
-                        style="height: 227px;"></textarea>
+                    <textarea class="form-control" aria-label="Описание проблемы" id="f_oto5"></textarea>
                 </div><br>
                 <div class="input-group">
                     <button type="button" class="btn btn-success" id="start_oto">Сформировать</button>
@@ -69,14 +74,11 @@
 
 
 
-                <div id="s_oto1">- Контактное лицо: 89270699131</div>
-                <div id="s_oto2">- Способ информирования о восстановлении и закрытии ТТ: звонок</div>
-                <div id="s_oto3">- Удобное время для связи: с 10:00 до 22:00</div>
-                <div id="s_oto4">- Согласие на приостановку: Нет</div>
-                <div id="s_oto5">- Описание проблемы: <br>Не работает Интернет, IP 46.52.243.115.<br>Был перебой ЭП, по
-                    информации от КК по отключалось району.<br>Со стороны КК - ЭП на об-нии есть, коммутация проверена.
-                    Перестало работать после перебоя ЭП.<br>Схема:<br>ПОРТ ООО НТС "Реал" -&gt; MikroTik RB951Ui-2HnD //
-                    10.213.10.45 // B8:69:F4:12:CE:07 (н/д)<br>Просьба проверить с вашей стороны/передать ОПМ.</div>
+                <div id="s_oto1"></div>
+                <div id="s_oto2"></div>
+                <div id="s_oto3"></div>
+                <div id="s_oto4"></div>
+                <div id="s_oto5"></div>
 
             </div>
 
