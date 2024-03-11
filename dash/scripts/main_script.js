@@ -188,6 +188,7 @@ function view_modal(modal_data) {
         for (var col = 0; col < data[row].length; col++) {
             if (modal_data == data[row][th_num_tt]) {
                 modal_tt.innerHTML = data[row][th_num_tt] +' от ' + data[row][th_date_tt];
+                modal_prior.innerHTML = data[row][th_prior];
             }
         }
     }
