@@ -23,47 +23,50 @@ const all_stats = document.getElementById("all_stats");
 const tbl_filter_th = document.getElementById("tbl-filter_th");
 const tbl_filter_td = document.getElementById("tbl-filter_td");
 const work_stats = document.getElementById("work_stats");
+
+var count_bss = 0,
+    count_krus = 0,
+    count_bss_y = 0,
+    count_krus_y = 0,
+    count_bss_n = 0,
+    count_krus_n = 0,
+    count_bss_y_h = 0,
+    count_krus_y_h = 0,
+    count_bss_n_h = 0,
+    count_krus_n_h = 0,
+    count_bss_y_m = 0,
+    count_krus_y_m = 0,
+    count_bss_n_m = 0,
+    count_krus_n_m = 0,
+    count_bss_y_l = 0,
+    count_krus_y_l = 0,
+    count_bss_n_l = 0,
+    count_krus_n_l = 0,
+    th_bil = 0,
+    th_sr = 0,
+    th_prior = 0;
+
 var arr_filter_td = [];
-var th_num_tt = 0;
+var th_num_tt = 0,
+    th_date_tt = 0;
 
 function view_stats(data) {
     all_stats.innerHTML = (data.length - 1);
-    var count_bss = 0,
-        count_krus = 0,
-        count_bss_y = 0,
-        count_krus_y = 0,
-        count_bss_n = 0,
-        count_krus_n = 0,
-        count_bss_y_h = 0,
-        count_krus_y_h = 0,
-        count_bss_n_h = 0,
-        count_krus_n_h = 0,
-        count_bss_y_m = 0,
-        count_krus_y_m = 0,
-        count_bss_n_m = 0,
-        count_krus_n_m = 0,
-        count_bss_y_l = 0,
-        count_krus_y_l = 0,
-        count_bss_n_l = 0,
-        count_krus_n_l = 0,
-        th_bil = 0,
-        th_sr = 0,
-        th_prior = 0;
     var selectList = tbl_filter_th;
     for (var row = 0; row < data.length; row++) {
         for (var col = 0; col < data[row].length; col++) {
-            // console.log(data[row].length);
             if (row == 0) {
-                // console.log ('Suck')
                 var option = document.createElement("option");
                 option.value = data[0][col];
                 option.text = data[0][col];
                 selectList.appendChild(option);
             }
+
             if (data[0][col] == 'BIL') { th_bil = col; }
             if (data[0][col] == 'Услуга Восстановлена') { th_sr = col; }
             if (data[0][col] == 'Приоритет') { th_prior = col; }
             if (data[0][col] == '№') { th_num_tt = col; }
+            if (data[0][col] == 'Дата') { th_date_tt = col; }
         }
         var if_bss = data[row][th_bil] == 'BSS',
             if_krus = data[row][th_bil] == 'КРУС',
@@ -112,13 +115,11 @@ function view_stats(data) {
     krus_n_l_stats.innerHTML = count_krus_n_l;
 
     work_stats.innerHTML = count_bss_n + count_krus_n + count_krus_y;
-    // view_table(data);
 }
 function view_filter(filter_th) {
     var selectList = tbl_filter_td;
     tbl_filter_td.innerText = '';
     arr_filter_td = ["Выберите значение..."];
-    console.log(tbl_filter_td);
     for (var row = 0; row < data.length; row++) {
         for (var col = 0; col < data[row].length; col++) {
             if ((row != 0) && (arr_filter_td.indexOf(data[row][col]) == "-1") && (data[0][col] == filter_th)) {
@@ -146,7 +147,6 @@ function view_table(filter) {
             var tr_table = document.createElement("tr");
             for (var col = 0; col < data[row].length; col++) {
                 var td_table = document.createElement("th");
-                // td_table.setAttribute("class","");
                 td_table.innerHTML = data[row][col];
                 tr_table.appendChild(td_table);
             }
@@ -154,13 +154,11 @@ function view_table(filter) {
             var tr_table = document.createElement("tr");
             for (var col = 0; col < data[row].length; col++) {
                 if (data[row][filter_th_id] == filter) {
-                    // console.log(data[row][filter_th_id] == filter);
                     var td_table = document.createElement("td");
                     td_table.setAttribute("name", data[row][col]);
-                    if (col == th_num_tt){
-                        td_table.innerHTML = '<button type="button" class="btn btn-primary" data-bs-toggle="modal"data-bs-target="#tbl-modal" onclick="view_modal(this.value)" value="'+data[row][col]+'">'+data[row][col]+'</button>';
-                    }else{td_table.innerHTML = data[row][col];}
-                    // td_table.setAttribute("class","");
+                    if (col == th_num_tt) {
+                        td_table.innerHTML = '<button type="button" class="btn btn-primary" data-bs-toggle="modal"data-bs-target="#tbl-modal" onclick="view_modal(this.value)" value="' + data[row][col] + '">' + data[row][col] + '</button>';
+                    } else { td_table.innerHTML = data[row][col]; }
                     tr_table.appendChild(td_table);
                 }
             }
@@ -172,27 +170,24 @@ function view_table(filter) {
 }
 
 function view_modal(modal_data) {
-    const modal_tt      = document.getElementById("modal_tt"),
-          modal_prior   = document.getElementById("modal_prior"),
-          modal_status  = document.getElementById("modal_status"),
-          modal_client  = document.getElementById("modal_client"),
-          modal_address = document.getElementById("modal_address"),
-          modal_contact = document.getElementById("modal_contact"),
-          modal_appli   = document.getElementById("modal_appli"),
-          modal_problem = document.getElementById("modal_problem"),
-          modal_exec    = document.getElementById("modal_exec"),
-          modal_descrip = document.getElementById("modal_descrip"),
-          modal_comment = document.getElementById("modal_comment"),
-          modal_tz      = document.getElementById("modal_tz"),
-          modal_sec     = document.getElementById("modal_sec");
-
-
+    const modal_tt = document.getElementById("modal_tt"),
+        modal_prior = document.getElementById("modal_prior"),
+        modal_status = document.getElementById("modal_status"),
+        modal_client = document.getElementById("modal_client"),
+        modal_address = document.getElementById("modal_address"),
+        modal_contact = document.getElementById("modal_contact"),
+        modal_appli = document.getElementById("modal_appli"),
+        modal_problem = document.getElementById("modal_problem"),
+        modal_exec = document.getElementById("modal_exec"),
+        modal_descrip = document.getElementById("modal_descrip"),
+        modal_comment = document.getElementById("modal_comment"),
+        modal_tz = document.getElementById("modal_tz"),
+        modal_sec = document.getElementById("modal_sec");
 
     for (var row = 0; row < data.length; row++) {
         for (var col = 0; col < data[row].length; col++) {
-            if (modal_data == data[row][th_num_tt]){
-                
-                console.log(modal_data);
+            if (modal_data == data[row][th_num_tt]) {
+                modal_tt.innerHTML = data[row][th_num_tt] +' от ' + data[row][th_date_tt];
             }
         }
     }
