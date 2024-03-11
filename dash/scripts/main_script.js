@@ -22,6 +22,7 @@ const krus_n_l_stats = document.getElementById("krus_n_l_stats");
 const all_stats = document.getElementById("all_stats");
 const tbl_filter_th = document.getElementById("tbl-filter_th");
 const tbl_filter_td = document.getElementById("tbl-filter_td");
+const work_stats = document.getElementById("work_stats");
 var arr_filter_td = [];
 
 function view_stats(data) {
@@ -108,6 +109,7 @@ function view_stats(data) {
     krus_n_m_stats.innerHTML = count_krus_n_m;
     krus_n_l_stats.innerHTML = count_krus_n_l;
 
+    work_stats.innerHTML = bss_n_stats + krus_n_stats + krus_y_stats;
     // view_table(data);
 }
 function view_filter(filter_th) {
