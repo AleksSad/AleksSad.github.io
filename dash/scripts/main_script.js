@@ -24,6 +24,7 @@ const tbl_filter_th = document.getElementById("tbl-filter_th");
 const tbl_filter_td = document.getElementById("tbl-filter_td");
 const work_stats = document.getElementById("work_stats");
 var arr_filter_td = [];
+var th_num_tt = 0;
 
 function view_stats(data) {
     all_stats.innerHTML = (data.length - 1);
@@ -62,6 +63,7 @@ function view_stats(data) {
             if (data[0][col] == 'BIL') { th_bil = col; }
             if (data[0][col] == 'Услуга Восстановлена') { th_sr = col; }
             if (data[0][col] == 'Приоритет') { th_prior = col; }
+            if (data[0][col] == '№') { th_num_tt = col; }
         }
         var if_bss = data[row][th_bil] == 'BSS',
             if_krus = data[row][th_bil] == 'КРУС',
@@ -138,7 +140,7 @@ function view_filter(filter_th) {
 function view_table(filter) {
     output.innerHTML = '';
     var table = document.createElement("table");
-    table.setAttribute ("class", "table table-bordered");
+    table.setAttribute("class", "table table-bordered");
     for (var row = 0; row < data.length; row++) {
         if (row == 0) {
             var tr_table = document.createElement("tr");
@@ -152,10 +154,13 @@ function view_table(filter) {
             var tr_table = document.createElement("tr");
             for (var col = 0; col < data[row].length; col++) {
                 if (data[row][filter_th_id] == filter) {
-                    console.log(data[row][filter_th_id] == filter);
+                    // console.log(data[row][filter_th_id] == filter);
                     var td_table = document.createElement("td");
+                    td_table.setAttribute("name", data[row][col]);
+                    if (col == th_num_tt){
+                        td_table.innerHTML = '<button type="button" class="btn btn-primary" data-bs-toggle="modal"data-bs-target="#tbl-modal" onclick="view_modal(this.value)" value="'+data[row][col]+'">'+data[row][col]+'</button>';
+                    }else{td_table.innerHTML = data[row][col];}
                     // td_table.setAttribute("class","");
-                    td_table.innerHTML = data[row][col];
                     tr_table.appendChild(td_table);
                 }
             }
@@ -164,4 +169,31 @@ function view_table(filter) {
     }
     output.appendChild(table);
 
+}
+
+function view_modal(modal_data) {
+    const modal_tt      = document.getElementById("modal_tt"),
+          modal_prior   = document.getElementById("modal_prior"),
+          modal_status  = document.getElementById("modal_status"),
+          modal_client  = document.getElementById("modal_client"),
+          modal_address = document.getElementById("modal_address"),
+          modal_contact = document.getElementById("modal_contact"),
+          modal_appli   = document.getElementById("modal_appli"),
+          modal_problem = document.getElementById("modal_problem"),
+          modal_exec    = document.getElementById("modal_exec"),
+          modal_descrip = document.getElementById("modal_descrip"),
+          modal_comment = document.getElementById("modal_comment"),
+          modal_tz      = document.getElementById("modal_tz"),
+          modal_sec     = document.getElementById("modal_sec");
+
+
+
+    for (var row = 0; row < data.length; row++) {
+        for (var col = 0; col < data[row].length; col++) {
+            if (modal_data == data[row][th_num_tt]){
+                
+                console.log(modal_data);
+            }
+        }
+    }
 }
