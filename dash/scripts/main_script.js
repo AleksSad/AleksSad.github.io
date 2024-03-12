@@ -116,9 +116,9 @@ function view_stats(data) {
             if_h = (data[row][th_prior] == '0') || (data[row][th_prior] == '1'),
             if_m = (data[row][th_prior] == '2') || (data[row][th_prior] == '3'),
             if_l = (data[row][th_prior] == '4') || (data[row][th_prior] == '5');
-            if_dez = (data[row][th_client] = 'ДЕЗ (ГК 869) (1877 шт) (23-24гг)');
-            if_kis = (data[row][th_client] = 'КИС_MSK12105');
-            if_dit = (data[row][th_client] = 'Мосгортелеком_WiFi 2024-2025');
+            if_dez = (data[row][th_client] == 'ДЕЗ (ГК 869) (1877 шт) (23-24гг)');
+            if_kis = (data[row][th_client] == 'КИС_MSK12105');
+            if_dit = (data[row][th_client] == 'Мосгортелеком_WiFi 2024-2025');
 
         if (if_bss) { count_bss++ }
         if (if_krus) { count_krus++ }
