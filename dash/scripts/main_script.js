@@ -58,9 +58,12 @@ var th_num_tt = 0,          // '№'
     th_exec1 = 0,           // 'Ответственный'
     th_exec2 = 0,           // 'Исполнитель'
     th_descrip = 0,         // 'COMMENTS' (Описание проблемы)
-    th_contract = 0,         // '№ дог'
+    th_contract = 0,        // '№ дог'
     th_tz = 0,              // 'TZ'
-    th_sec = 0;             // ''
+    th_sec = 0;             // 'Сегмент'
+    th_manag = 0;           // 'Менеджер сопр.'
+    th_out_ticket = 0;      // 'Кейс внешний'
+    th_iz = 0;              // 'ИЗ'
 
 function view_stats(data) {
     all_stats.innerHTML = (data.length - 1);
@@ -90,6 +93,9 @@ function view_stats(data) {
             if (data[0][col] == '№ дог') { th_contract = col; }
             if (data[0][col] == 'TZ') { th_tz = col; }
             if (data[0][col] == 'Сегмент') { th_sec = col; }
+            if (data[0][col] == 'Менеджер сопр.') { th_manag = col; }
+            if (data[0][col] == 'Кейс внешний') { th_out_ticket = col; }
+            if (data[0][col] == 'ИЗ') { th_iz = col; }
         }
         var if_bss = data[row][th_bil] == 'BSS',
             if_krus = data[row][th_bil] == 'КРУС',
@@ -178,10 +184,11 @@ function view_table(filter) {
             for (var col = 0; col < data[row].length; col++) {
                 if (data[row][filter_th_id] == filter) {
                     var td_table = document.createElement("td");
-                    td_table.setAttribute("name", data[row][col]);
                     if (col == th_num_tt) {
                         td_table.innerHTML = '<button type="button" class="btn btn-primary" data-bs-toggle="modal"data-bs-target="#tbl-modal" onclick="view_modal(this.value)" value="' + data[row][col] + '">' + data[row][col] + '</button>';
-                    } else { td_table.innerHTML = data[row][col]; }
+                    } else if ((col == th_manag)&&(data[row][th_manag] != null))
+                    {console.log((col == th_manag)&&(data[row][th_manag] != null));td_table.innerHTML = '<a href="mailto:'+data[row][th_manag]+'?subject=ТТ '+data[row][th_num_tt]+' // '+data[row][th_client]+'"><button type="button" class="btn btn-primary">'+data[row][th_manag]+'</button></a>';}
+                    else{td_table.innerHTML = data[row][col];}
                     tr_table.appendChild(td_table);
                 }
             }
@@ -206,9 +213,11 @@ function view_modal(modal_data) {
         modal_contract = document.getElementById("modal_contract"),
         modal_tz = document.getElementById("modal_tz"),
         modal_sec = document.getElementById("modal_sec");
+        modal_manag = document.getElementById("modal_manag");
+        modal_out_ticket = document.getElementById("modal_out_ticket");
         tbl_modal_data = document.getElementById("tbl_modal_data");
-        
 
+        
     for (var row = 0; row < data.length; row++) {
         for (var col = 0; col < data[row].length; col++) {
             if (modal_data == data[row][th_num_tt]) {
@@ -218,14 +227,20 @@ function view_modal(modal_data) {
                 modal_status.innerHTML = data[row][th_status];
                 modal_client.innerHTML = data[row][th_client];
                 modal_address.innerHTML = data[row][th_address];
-                modal_bil.innerHTML = data[row][th_bil];
+                if (data[row][th_iz] != null) { modal_bil.innerHTML = data[row][th_bil]+' / '+data[row][+th_iz];}
+                else{modal_bil.innerHTML = data[row][th_bil]+' / ';}
                 modal_appli.innerHTML = data[row][th_appli];
                 modal_problem.innerHTML = data[row][th_problem];
                 modal_exec.innerHTML = data[row][th_exec1] +' / '+ data[row][th_exec2];
-                modal_descrip.innerHTML = data[row][th_descrip];
+                modal_descrip.innerHTML = data[row][th_descrip].replaceAll("_x000D_", `<br>`);
                 modal_contract.innerHTML = data[row][th_contract];
-                modal_tz.innerHTML = data[row][th_tz];
+                modal_tz.innerHTML = data[row][th_tz].replaceAll(`\n`, `<br>`).replaceAll("_x000D_", `<br>`);;
                 modal_sec.innerHTML = data[row][th_sec];
+                if (data[row][th_manag] != null) {modal_manag.innerHTML = '<a href="mailto:'+data[row][th_manag]+'?subject=ТТ '+data[row][th_num_tt]+' // '+data[row][th_client]+'">'+data[row][th_manag]+'</a>';}
+                else{modal_manag.innerHTML = '';}
+                if (data[row][th_bil] == 'BSS') {modal_out_ticket.innerHTML = '<a href="https://tm.bss.loc/ncobject.jsp?id='+data[row][th_out_ticket]+'" target="_blank">'+data[row][th_out_ticket]+'</a>';}
+                else if ((data[row][th_out_ticket] != null)&&(data[row][th_bil] == 'КРУС')) {modal_out_ticket.innerHTML = '<a href="https://cliks.ertelecom.ru/modules/mod_ticket_search.php?but_search_arm&request_id='+data[row][th_out_ticket]+'" target="_blank">'+data[row][th_out_ticket]+'</a>';}
+                else{modal_out_ticket.innerHTML = '';}
 
             }
         }
