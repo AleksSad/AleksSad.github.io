@@ -164,6 +164,13 @@ function view_stats(data) {
     krus_n_m_stats.innerHTML = count_krus_n_m;
     krus_n_l_stats.innerHTML = count_krus_n_l;
 
+    kis_y.innerHTML = count_kis_y;
+    kis_n.innerHTML = count_kis_n;
+    dit_y.innerHTML = count_dit_y;
+    dit_n.innerHTML = count_dit_n;
+    dez_y.innerHTML = count_dez_y;
+    dez_n.innerHTML = count_dez_n;
+    
     work_stats.innerHTML = count_bss_n + count_krus_n + count_krus_y;
 }
 function view_filter(filter_th) {
