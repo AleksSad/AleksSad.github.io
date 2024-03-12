@@ -60,9 +60,9 @@ var th_num_tt = 0,          // '№'
     th_descrip = 0,         // 'COMMENTS' (Описание проблемы)
     th_contract = 0,        // '№ дог'
     th_tz = 0,              // 'TZ'
-    th_sec = 0;             // 'Сегмент'
-    th_manag = 0;           // 'Менеджер сопр.'
-    th_out_ticket = 0;      // 'Кейс внешний'
+    th_sec = 0,             // 'Сегмент'
+    th_manag = 0,         // 'Менеджер сопр.'
+    th_out_ticket = 0,      // 'Кейс внешний'
     th_iz = 0;              // 'ИЗ'
 
 function view_stats(data) {
@@ -186,9 +186,9 @@ function view_table(filter) {
                     var td_table = document.createElement("td");
                     if (col == th_num_tt) {
                         td_table.innerHTML = '<button type="button" class="btn btn-primary" data-bs-toggle="modal"data-bs-target="#tbl-modal" onclick="view_modal(this.value)" value="' + data[row][col] + '">' + data[row][col] + '</button>';
-                    } else if ((col == th_manag)&&(data[row][th_manag] != null))
-                    {console.log((col == th_manag)&&(data[row][th_manag] != null));td_table.innerHTML = '<a href="mailto:'+data[row][th_manag]+'?subject=ТТ '+data[row][th_num_tt]+' // '+data[row][th_client]+'"><button type="button" class="btn btn-primary">'+data[row][th_manag]+'</button></a>';}
-                    else{td_table.innerHTML = data[row][col];}
+                    } else if ((col == th_manag) && (data[row][th_manag] != null))
+                        { td_table.innerHTML = '<a href="mailto:' + data[row][th_manag] + '?subject=ТТ ' + data[row][th_num_tt] + ' // ' + data[row][th_client] + '"><button type="button" class="btn btn-primary">' + data[row][th_manag] + '</button></a>'; }
+                        else { td_table.innerHTML = data[row][col]; }
                     tr_table.appendChild(td_table);
                 }
             }
@@ -212,36 +212,45 @@ function view_modal(modal_data) {
         modal_descrip = document.getElementById("modal_descrip"),
         modal_contract = document.getElementById("modal_contract"),
         modal_tz = document.getElementById("modal_tz"),
-        modal_sec = document.getElementById("modal_sec");
-        modal_manag = document.getElementById("modal_manag");
-        modal_out_ticket = document.getElementById("modal_out_ticket");
+        modal_sr = document.getElementById("modal_sr"),
+        modal_manag = document.getElementById("modal_manag"),
+        modal_out_ticket = document.getElementById("modal_out_ticket"),
         tbl_modal_data = document.getElementById("tbl_modal_data");
 
-        
+
     for (var row = 0; row < data.length; row++) {
         for (var col = 0; col < data[row].length; col++) {
             if (modal_data == data[row][th_num_tt]) {
                 tbl_modal_data.innerHTML = data[row][th_num_tt];
-                modal_tt.innerHTML = data[row][th_num_tt] +' от ' + data[row][th_date_tt];
-                modal_prior.innerHTML = data[row][th_prior];
+                modal_tt.innerHTML = data[row][th_num_tt] + ' от ' + data[row][th_date_tt];
                 modal_status.innerHTML = data[row][th_status];
                 modal_client.innerHTML = data[row][th_client];
-                modal_address.innerHTML = data[row][th_address];
-                if (data[row][th_iz] != null) { modal_bil.innerHTML = data[row][th_bil]+' / '+data[row][+th_iz];}
-                else{modal_bil.innerHTML = data[row][th_bil]+' / ';}
+                modal_address.innerHTML = data[row][th_address].replaceAll(";", `<br>`);
+                if (data[row][th_iz] != null) { modal_bil.innerHTML = data[row][th_bil] + ' / ' + data[row][+th_iz]; }
+                else { modal_bil.innerHTML = data[row][th_bil] + ' / '; }
                 modal_appli.innerHTML = data[row][th_appli];
                 modal_problem.innerHTML = data[row][th_problem];
-                modal_exec.innerHTML = data[row][th_exec1] +' / '+ data[row][th_exec2];
+                if (data[row][th_exec2] != null) { modal_exec.innerHTML = data[row][th_exec1] + ' / ' + data[row][th_exec2]; }
+                else { modal_exec.innerHTML = data[row][th_exec1] + ' / '; }
                 modal_descrip.innerHTML = data[row][th_descrip].replaceAll("_x000D_", `<br>`);
                 modal_contract.innerHTML = data[row][th_contract];
                 modal_tz.innerHTML = data[row][th_tz].replaceAll(`\n`, `<br>`).replaceAll("_x000D_", `<br>`);;
-                modal_sec.innerHTML = data[row][th_sec];
-                if (data[row][th_manag] != null) {modal_manag.innerHTML = '<a href="mailto:'+data[row][th_manag]+'?subject=ТТ '+data[row][th_num_tt]+' // '+data[row][th_client]+'">'+data[row][th_manag]+'</a>';}
-                else{modal_manag.innerHTML = '';}
-                if (data[row][th_bil] == 'BSS') {modal_out_ticket.innerHTML = '<a href="https://tm.bss.loc/ncobject.jsp?id='+data[row][th_out_ticket]+'" target="_blank">'+data[row][th_out_ticket]+'</a>';}
-                else if ((data[row][th_out_ticket] != null)&&(data[row][th_bil] == 'КРУС')) {modal_out_ticket.innerHTML = '<a href="https://cliks.ertelecom.ru/modules/mod_ticket_search.php?but_search_arm&request_id='+data[row][th_out_ticket]+'" target="_blank">'+data[row][th_out_ticket]+'</a>';}
-                else{modal_out_ticket.innerHTML = '';}
-
+                modal_sr.innerHTML = data[row][th_sr];
+                if (data[row][th_manag] != null) { modal_manag.innerHTML = '<a href="mailto:' + data[row][th_manag] + '?subject=ТТ ' + data[row][th_num_tt] + ' // ' + data[row][th_client] + '">' + data[row][th_manag] + '</a>'; }
+                else { modal_manag.innerHTML = ''; }
+                if (data[row][th_bil] == 'BSS') { modal_out_ticket.innerHTML = '<a href="https://tm.bss.loc/ncobject.jsp?id=' + data[row][th_out_ticket] + '" target="_blank">' + data[row][th_out_ticket] + '</a>'; }
+                else if ((data[row][th_out_ticket] != null) && (data[row][th_bil] == 'КРУС')) { modal_out_ticket.innerHTML = '<a href="https://cliks.ertelecom.ru/modules/mod_ticket_search.php?but_search_arm&request_id=' + data[row][th_out_ticket] + '" target="_blank">' + data[row][th_out_ticket] + '</a>'; }
+                else { modal_out_ticket.innerHTML = ''; }
+                switch (data[row][th_prior]) {
+                    case -3: modal_prior.innerHTML = "-3 приоритет (проблема при подключении)"; break;
+                    case -2: modal_prior.innerHTML = "-2 приоритет (администрирование домена)"; break;
+                    case 0: modal_prior.innerHTML = "0 - высший приоритет"; break;
+                    case 1: modal_prior.innerHTML = "1 - проблема одного Клиента"; break;
+                    case 2: modal_prior.innerHTML = "2 - проблема на сети, услуги доступны"; break;
+                    case 3: modal_prior.innerHTML = "3 - снижено качество"; break;
+                    case 4: modal_prior.innerHTML = "4 - не влияет на качество"; break;
+                    case 5: modal_prior.innerHTML = "5 - в зоне ответственности клиента"; break;
+                }
             }
         }
     }
