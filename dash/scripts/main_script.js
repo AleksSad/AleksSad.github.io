@@ -22,7 +22,13 @@ const krus_n_l_stats = document.getElementById("krus_n_l_stats");
 const all_stats = document.getElementById("all_stats");
 const tbl_filter_th = document.getElementById("tbl-filter_th");
 const tbl_filter_td = document.getElementById("tbl-filter_td");
-const work_stats = document.getElementById("work_stats");
+const kis_y = document.getElementById("kis_y");
+const kis_n = document.getElementById("kis_n");
+const dit_y = document.getElementById("dit_y");
+const dit_n = document.getElementById("dit_n");
+const dez_y = document.getElementById("dez_y");
+const dez_n = document.getElementById("dez_n");
+
 
 var count_bss = 0,
     count_krus = 0,
@@ -41,7 +47,13 @@ var count_bss = 0,
     count_bss_y_l = 0,
     count_krus_y_l = 0,
     count_bss_n_l = 0,
-    count_krus_n_l = 0;
+    count_krus_n_l = 0,
+    count_dez_y = 0,
+    count_kis_y = 0,
+    count_dit_y = 0,
+    count_dez_n = 0,
+    count_kis_n = 0,
+    count_dit_n = 0;
 
 var arr_filter_td = [];
 
@@ -61,7 +73,7 @@ var th_num_tt = 0,          // '№'
     th_contract = 0,        // '№ дог'
     th_tz = 0,              // 'TZ'
     th_sec = 0,             // 'Сегмент'
-    th_manag = 0,         // 'Менеджер сопр.'
+    th_manag = 0,           // 'Менеджер сопр.'
     th_out_ticket = 0,      // 'Кейс внешний'
     th_iz = 0;              // 'ИЗ'
 
@@ -104,6 +116,9 @@ function view_stats(data) {
             if_h = (data[row][th_prior] == '0') || (data[row][th_prior] == '1'),
             if_m = (data[row][th_prior] == '2') || (data[row][th_prior] == '3'),
             if_l = (data[row][th_prior] == '4') || (data[row][th_prior] == '5');
+            if_dez = (data[row][th_client] = 'ДЕЗ (ГК 869) (1877 шт) (23-24гг)');
+            if_kis = (data[row][th_client] = 'КИС_MSK12105');
+            if_dit = (data[row][th_client] = 'Мосгортелеком_WiFi 2024-2025');
 
         if (if_bss) { count_bss++ }
         if (if_krus) { count_krus++ }
@@ -123,6 +138,12 @@ function view_stats(data) {
         if (if_l && if_y && if_krus) { count_krus_y_l++; }
         if (if_l && if_n && if_bss) { count_bss_n_l++; }
         if (if_l && if_n && if_krus) { count_krus_n_l++; }
+        if (if_y && if_dez) { count_dez_y++; }
+        if (if_y && if_kis) { count_kis_y++; }
+        if (if_y && if_dit) { count_dit_y++; }
+        if (if_n && if_dez) { count_dez_n++; }
+        if (if_n && if_kis) { count_kis_n++; }
+        if (if_n && if_dit) { count_dit_n++; }
     }
     bss_stats.innerHTML = count_bss;
     krus_stats.innerHTML = count_krus;
@@ -185,10 +206,9 @@ function view_table(filter) {
                 if (data[row][filter_th_id] == filter) {
                     var td_table = document.createElement("td");
                     if (col == th_num_tt) {
-                        td_table.innerHTML = '<button type="button" class="btn btn-primary" data-bs-toggle="modal"data-bs-target="#tbl-modal" onclick="view_modal(this.value)" value="' + data[row][col] + '">' + data[row][col] + '</button>';
-                    } else if ((col == th_manag) && (data[row][th_manag] != null))
-                        { td_table.innerHTML = '<a href="mailto:' + data[row][th_manag] + '?subject=ТТ ' + data[row][th_num_tt] + ' // ' + data[row][th_client] + '"><button type="button" class="btn btn-primary">' + data[row][th_manag] + '</button></a>'; }
-                        else { td_table.innerHTML = data[row][col]; }
+                        td_table.innerHTML = `<button type="button" class="btn btn-secondary" data-bs-toggle="modal"data-bs-target="#tbl-modal" onclick="view_modal(this.value)" value="${data[row][col]}">${data[row][col]}</button>`;
+                    } else if ((col == th_manag) && (data[row][th_manag] != null)) { td_table.innerHTML = `<a href="mailto:${data[row][th_manag]}?subject=ТТ ${data[row][th_num_tt]} // ${data[row][th_client]}"><button type="button" class="btn btn-secondary">${data[row][th_manag]}</button></a>`; }
+                    else { td_table.innerHTML = data[row][col]; }
                     tr_table.appendChild(td_table);
                 }
             }
@@ -236,10 +256,10 @@ function view_modal(modal_data) {
                 modal_contract.innerHTML = data[row][th_contract];
                 modal_tz.innerHTML = data[row][th_tz].replaceAll(`\n`, `<br>`).replaceAll("_x000D_", `<br>`);;
                 modal_sr.innerHTML = data[row][th_sr];
-                if (data[row][th_manag] != null) { modal_manag.innerHTML = '<a href="mailto:' + data[row][th_manag] + '?subject=ТТ ' + data[row][th_num_tt] + ' // ' + data[row][th_client] + '">' + data[row][th_manag] + '</a>'; }
+                if (data[row][th_manag] != null) { modal_manag.innerHTML = `<a href="mailto:${data[row][th_manag]}?subject=ТТ ${data[row][th_num_tt]} // ${data[row][th_client]}"><button type="button" class="btn btn-secondary">${data[row][th_manag]}</button></a>`;; }
                 else { modal_manag.innerHTML = ''; }
-                if (data[row][th_bil] == 'BSS') { modal_out_ticket.innerHTML = '<a href="https://tm.bss.loc/ncobject.jsp?id=' + data[row][th_out_ticket] + '" target="_blank">' + data[row][th_out_ticket] + '</a>'; }
-                else if ((data[row][th_out_ticket] != null) && (data[row][th_bil] == 'КРУС')) { modal_out_ticket.innerHTML = '<a href="https://cliks.ertelecom.ru/modules/mod_ticket_search.php?but_search_arm&request_id=' + data[row][th_out_ticket] + '" target="_blank">' + data[row][th_out_ticket] + '</a>'; }
+                if ((data[row][th_bil] == 'BSS')&&(data[row][th_iz] == 'bss')) { modal_out_ticket.innerHTML = `<a href="https://tm.bss.loc/ncobject.jsp?id=${data[row][th_out_ticket]}" target="_blank">${data[row][th_out_ticket]}</a>`; }
+                else if ((data[row][th_out_ticket] != null) && (data[row][th_bil] == 'КРУС')||(data[row][th_iz] == 'arm')) { modal_out_ticket.innerHTML = `<a href="https://cliks.ertelecom.ru/modules/mod_ticket_search.php?but_search_arm&request_id=${data[row][th_out_ticket]}" target="_blank">${data[row][th_out_ticket]}</a>`; }
                 else { modal_out_ticket.innerHTML = ''; }
                 switch (data[row][th_prior]) {
                     case -3: modal_prior.innerHTML = "-3 приоритет (проблема при подключении)"; break;
