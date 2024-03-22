@@ -291,7 +291,7 @@ function view_modal(modal_data) {
                 }
                 modal_descrip.innerHTML = data[row][th_descrip].replaceAll("_x000D_", `<br>`);
                 modal_contract.innerHTML = data[row][th_contract];
-                modal_tz.innerHTML = data[row][th_tz].replaceAll(`\n`, `<br>`).replaceAll("_x000D_", `<br>`);;
+                modal_tz.innerHTML = data[row][th_tz].replaceAll(`\n`, `<br>`).replaceAll("_x000D_", `<br>`);
                 modal_sr.innerHTML = data[row][th_sr];
                 if (data[row][th_manag] != null) {
                     modal_manag.innerHTML = `<a href="mailto:${data[row][th_manag]}?subject=ТТ ${data[row][th_num_tt]} // ${data[row][th_client]}"><button type="button" class="btn btn-secondary">${data[row][th_manag]}</button></a>`;
