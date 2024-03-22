@@ -308,7 +308,7 @@ function view_modal(modal_data) {
                 switch (data[row][th_prior]) {
                     case -3: modal_prior.innerHTML = "-3 приоритет (проблема при подключении)"; break;
                     case -2: modal_prior.innerHTML = "-2 приоритет (администрирование домена)"; break;
-                    case 0: modal_prior.innerHTML = "0 - высший приоритет"; break;
+                    case `0: modal_prior.innerHTML = "0 - высший приоритет"; break;
                     case 1: modal_prior.innerHTML = "1 - проблема одного Клиента"; break;
                     case 2: modal_prior.innerHTML = "2 - проблема на сети, услуги доступны"; break;
                     case 3: modal_prior.innerHTML = "3 - снижено качество"; break;
