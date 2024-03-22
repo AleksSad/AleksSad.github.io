@@ -305,6 +305,7 @@ function view_modal(modal_data) {
                 } else {
                     modal_out_ticket.innerHTML = '';
                 }
+                console.log(data[row][th_prior]);
                 switch (data[row][th_prior]) {
                     case -3: modal_prior.innerHTML = "-3 приоритет (проблема при подключении)"; break;
                     case -2: modal_prior.innerHTML = "-2 приоритет (администрирование домена)"; break;
