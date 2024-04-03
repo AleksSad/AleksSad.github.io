@@ -38,12 +38,10 @@ const input = document.getElementById("input"),
     b2g_n = document.getElementById("b2g_n"),
     b2o_n = document.getElementById("b2o_n"),
     b2f_n = document.getElementById("b2f_n"),
-    b2c_n = document.getElementById("b2c_n"),
     b2r_y = document.getElementById("b2r_y"),
     b2g_y = document.getElementById("b2g_y"),
     b2o_y = document.getElementById("b2o_y"),
     b2f_y = document.getElementById("b2f_y"),
-    b2c_y = document.getElementById("b2c_y"),
     sso_y = document.getElementById("sso_y"),
     sso_n = document.getElementById("sso_n"),
     //Модальное окно
@@ -63,9 +61,7 @@ const input = document.getElementById("input"),
     modal_manag = document.getElementById("modal_manag"),
     modal_out_ticket = document.getElementById("modal_out_ticket"),
     tbl_modal_data = document.getElementById("tbl_modal_data");
-
 var arr_filter_td = [],
-
     th_iz = 0;              // 'ИЗ'
     th_sr = 0,              // 'Услуга Восстановлена'
     th_tz = 0,              // 'TZ'
@@ -86,7 +82,6 @@ var arr_filter_td = [],
     th_descrip = 0,         // 'COMMENTS' (Описание проблемы)
     th_contract = 0,        // '№ дог'
     th_out_ticket = 0;      // 'Кейс внешний'
-
 function view_stats(data) {
     all_stats.innerHTML = (data.length - 1);
     var selectList = tbl_filter_th;
@@ -108,14 +103,12 @@ function view_stats(data) {
         count_krus_y_l = 0,
         count_bss_n_l = 0,
         count_krus_n_l = 0,
-
         count_dez_y = 0,
         count_kis_y = 0,
         count_dit_y = 0,
         count_dez_n = 0,
         count_kis_n = 0,
         count_dit_n = 0,
-
         count_b2r_y = 0,
         count_b2r_n = 0,
         count_b2g_y = 0,
@@ -124,11 +117,8 @@ function view_stats(data) {
         count_b2o_n = 0,
         count_b2f_y = 0,
         count_b2f_n = 0,
-        count_b2c_y = 0,
-        count_b2c_n = 0,
         count_sso_y = 0,
         count_sso_n = 0;
-
         
         
     for (var row = 0; row < data.length; row++) {
@@ -178,7 +168,6 @@ function view_stats(data) {
             if_b2r = (data[row][th_sso] == 'B2R'),
             if_b2o = (data[row][th_sso] == 'B2O'),
             if_b2g = (data[row][th_sso] == 'B2G'),
-            if_b2c = (data[row][th_sso] == 'B2C'),
             if_sso = (data[row][th_sso] == null);//console.log(data[row][th_sso]);
         
         if (if_bss) { count_bss++; innerCount(count_bss, bss_stats); }
@@ -190,7 +179,6 @@ function view_stats(data) {
         if (if_bss && if_n && if_h) { count_bss_n_h++; innerCount(count_bss_n_h, bss_n_h_stats);}
         if (if_bss && if_n && if_m) { count_bss_n_m++; innerCount(count_bss_n_m, bss_n_m_stats);}
         if (if_bss && if_n && if_l) { count_bss_n_l++; innerCount(count_bss_n_l, bss_n_l_stats);}
-
         if (if_krus) { count_krus++ ; innerCount(count_krus, krus_stats);}
         if (if_krus && if_y) { count_krus_y++; innerCount(count_krus_y, krus_y_stats);}
         if (if_krus && if_n) { count_krus_n++; innerCount(count_krus_n, krus_n_stats);}
@@ -200,14 +188,12 @@ function view_stats(data) {
         if (if_krus && if_n && if_h) { count_krus_n_h++; innerCount(count_krus_n_h, krus_n_h_stats);}
         if (if_krus && if_n && if_m) { count_krus_n_m++; innerCount(count_krus_n_m, krus_n_m_stats);}
         if (if_krus && if_n && if_l) { count_krus_n_l++; innerCount(count_krus_n_l, krus_n_l_stats);}
-
         if (if_kis && if_y) { count_kis_y++; innerCount(count_kis_y, kis_y);}
         if (if_kis && if_n) { count_kis_n++; innerCount(count_kis_n, kis_n);}
         if (if_dit && if_y) { count_dit_y++; innerCount(count_dit_y, dit_y);}
         if (if_dit && if_n) { count_dit_n++; innerCount(count_dit_n, dit_n);}
         if (if_dez && if_y) { count_dez_y++; innerCount(count_dez_y, dez_y);}
         if (if_dez && if_n) { count_dez_n++; innerCount(count_dez_n, dez_n);}
-
         if (if_b2r && if_y) { count_b2r_y++; innerCount(count_b2r_y, b2r_y);}
         if (if_b2r && if_n) { count_b2r_n++; innerCount(count_b2r_n, b2r_n);}
         if (if_b2g && if_y) { count_b2g_y++; innerCount(count_b2g_y, b2g_y);}
@@ -216,14 +202,11 @@ function view_stats(data) {
         if (if_b2o && if_n) { count_b2o_n++; innerCount(count_b2o_n, b2o_n);}
         if (if_b2f && if_y) { count_b2f_y++; innerCount(count_b2f_y, b2f_y);}
         if (if_b2f && if_n) { count_b2f_n++; innerCount(count_b2f_n, b2f_n);}
-        if (if_b2c && if_y) { count_b2c_y++; innerCount(count_b2c_y, b2c_y);}
-        if (if_b2c && if_n) { count_b2c_n++; innerCount(count_b2c_n, b2c_n);}
         if (if_sso && if_y) { count_sso_y++; innerCount(count_sso_y, sso_y);}
         if (if_sso && if_n) { count_sso_n++; innerCount(count_sso_n, sso_n);}
     }
     work_stats.innerHTML = count_bss_n + count_krus_n + count_krus_y;
 }
-
 function view_filter(filter_th) {
     var selectList = tbl_filter_td;
     tbl_filter_td.innerText = '';
@@ -243,7 +226,6 @@ function view_filter(filter_th) {
     }
     filter_th_id = data[0].indexOf(filter_th);
 }
-
 function view_table(filter) {
     output.innerHTML = '';
     var table = document.createElement("table");
@@ -274,7 +256,6 @@ function view_table(filter) {
     }
     output.appendChild(table);
 }
-
 function view_modal(modal_data) {
     for (var row = 0; row < data.length; row++) {
         for (var col = 0; col < data[row].length; col++) {
@@ -327,5 +308,3 @@ function view_modal(modal_data) {
         }
     }
 }
-
-//down
