@@ -38,10 +38,12 @@ const input = document.getElementById("input"),
     b2g_n = document.getElementById("b2g_n"),
     b2o_n = document.getElementById("b2o_n"),
     b2f_n = document.getElementById("b2f_n"),
+    b2c_n = document.getElementById("b2c_n"),
     b2r_y = document.getElementById("b2r_y"),
     b2g_y = document.getElementById("b2g_y"),
     b2o_y = document.getElementById("b2o_y"),
     b2f_y = document.getElementById("b2f_y"),
+    b2c_y = document.getElementById("b2c_y"),
     sso_y = document.getElementById("sso_y"),
     sso_n = document.getElementById("sso_n"),
     //Модальное окно
@@ -122,6 +124,8 @@ function view_stats(data) {
         count_b2o_n = 0,
         count_b2f_y = 0,
         count_b2f_n = 0,
+        count_b2c_y = 0,
+        count_b2c_n = 0,
         count_sso_y = 0,
         count_sso_n = 0;
 
@@ -174,6 +178,7 @@ function view_stats(data) {
             if_b2r = (data[row][th_sso] == 'B2R'),
             if_b2o = (data[row][th_sso] == 'B2O'),
             if_b2g = (data[row][th_sso] == 'B2G'),
+            if_b2c = (data[row][th_sso] == 'B2C'),
             if_sso = (data[row][th_sso] == null);//console.log(data[row][th_sso]);
         
         if (if_bss) { count_bss++; innerCount(count_bss, bss_stats); }
@@ -211,6 +216,8 @@ function view_stats(data) {
         if (if_b2o && if_n) { count_b2o_n++; innerCount(count_b2o_n, b2o_n);}
         if (if_b2f && if_y) { count_b2f_y++; innerCount(count_b2f_y, b2f_y);}
         if (if_b2f && if_n) { count_b2f_n++; innerCount(count_b2f_n, b2f_n);}
+        if (if_b2c && if_y) { count_b2c_y++; innerCount(count_b2c_y, b2c_y);}
+        if (if_b2c && if_n) { count_b2c_n++; innerCount(count_b2c_n, b2c_n);}
         if (if_sso && if_y) { count_sso_y++; innerCount(count_sso_y, sso_y);}
         if (if_sso && if_n) { count_sso_n++; innerCount(count_sso_n, sso_n);}
     }
