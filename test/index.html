@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <title>Сервисный-центр MADiKo</title>
+</head>
+
+<body>
+    <div id="start"></div>
+    <nav class="navbar navbar-expand-lg sticky-top py-3" data-navbar-soft-on-scroll="data-navbar-soft-on-scroll"
+        style="background-color: #f3f3f3;">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#start">MADiKo</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link fw-bold" href="#about">О нас</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold" href="#service">Услуги</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold" href="tel:+79876543210">+7 (987) 654 32-01</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold" href="mailto:yourserv@mail.com">yourserv@mail.com</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="bg-danger section overflow-hidden py-0"
+        style="background: linear-gradient(94.41deg, #195b91 -6.4%, #0a0951 105.25%);">
+        <div class="container-small position-relative py-8">
+            <div class="row align-items-center gx-xxl-13">
+                <div class="col-lg-6 mb-6 z-1"><img class="mw-100" src="pic1.jpg" alt=""></div>
+                <div class="col-lg-6">
+                    <h1 class="text-light fw-normal mb-4 text-center text-lg-start"><br
+                            class="d-none d-lg-block d-xl-none"><span class="text-primary-light ms-2 fw-bolder"
+                            id="about">Сервисный-центр MADiKo</span></h1>
+                    <p class="text-light text-center text-lg-start">Сервисный центр по ремонту цифровой техники MADiKo в
+                        кратчайшие сроки устранит любой вид неисправности с гарантией качества на 3 года. Настоящие
+                        профессионалы используют в работе только запчасти самого высокого класса, предоставляя гарантию.
+                    </p>
+                    <p class="text-light text-center text-lg-start">Здесь можно отремонтировать такие виды цифровой
+                        техники, как смартфоны, фотоаппараты, телевизоры, ПК, ноутбуки и т. п. Также в сервисе можно
+                        провести бесплатную диагностику любых видов устройств, которая поможет определить характер
+                        поломки и наиболее эффективные варианты ее устранения.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <h1 class="text-dark mb-4 text-center" style="margin-top: 1em;"><br class="d-none d-lg-block d-xl-none"><span
+            class="text-primary-dark ms-2 fw-bolder" id="service">Услуги</span></h1>
+
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Наименование услуги</th>
+                    <th scope="col">Стоимость</th>
+                    <th scope="col">Выбрать</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Первичная диагностика</td>
+                    <td>500 ₽</td>
+                    <td><input class="form-check-input" type="checkbox" value="500" id="flexCheckDefault"
+                            onchange="summy(this.checked,this.value)"></td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Замены термопасты</td>
+                    <td>от 1000 ₽</td>
+                    <td><input class="form-check-input" type="checkbox" value="1000" id="flexCheckDefault"
+                            onchange="summy(this.checked,this.value)"></td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Восстановление фалов диска</td>
+                    <td>от 2000 ₽</td>
+                    <td><input class="form-check-input" type="checkbox" value="2000" id="flexCheckDefault"
+                            onchange="summy(this.checked,this.value)"></td>
+                </tr>
+                <tr>
+                    <th scope="row">4</th>
+                    <td>Установка Windows</td>
+                    <td>от 1500 ₽</td>
+                    <td><input class="form-check-input" type="checkbox" value="1500" id="flexCheckDefault"
+                            onchange="summy(this.checked,this.value)"></td>
+                </tr>
+                <tr>
+                    <th scope="row">5</th>
+                    <td>Ремонт вентилятора</td>
+                    <td>от 550 ₽</td>
+                    <td><input class="form-check-input" type="checkbox" value="550" id="flexCheckDefault"
+                            onchange="summy(this.checked,this.value)"></td>
+                </tr>
+        </table>
+        <h4 class="text-center" id="summ">Итого: 0.00 ₽</h4>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+    let tmp = 0;
+    function summy(a, b) {
+        let ifs = (a) ? tmp += Number(b) : tmp -= Number(b);
+        document.getElementById('summ').innerText = `Итого: ${ifs.toFixed(2)} ₽`;
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script>
