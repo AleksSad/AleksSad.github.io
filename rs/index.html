@@ -179,22 +179,22 @@
             <div class="card card-body">
                 <!-- Меню -->
                 <div class="input-group">
-                    <a class="btn btn-success" data-bs-toggle="collapse" href="#infinet" role="button"
-                        aria-expanded="false" aria-controls="infinet">InfiNet</a>
-                    <a class="btn btn-warning" data-bs-toggle="collapse" href="#lva" role="button" aria-expanded="false"
-                        aria-controls="lva">ЛВА</a>
-                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#mikrotik" role="button"
-                        aria-expanded="false" aria-controls="mikrotik">MikroTik</a>
-                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#addpac" role="button"
-                        aria-expanded="false" aria-controls="addpac">AddPac</a>
-                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#huawei" role="button"
-                        aria-expanded="false" aria-controls="huawei">Huawei</a>
-                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#qtech" role="button"
-                        aria-expanded="false" aria-controls="qtech">QTECH</a>
-                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#tplink" role="button"
-                        aria-expanded="false" aria-controls="tplink">TP-Link</a>
-                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#gpon" role="button"
-                        aria-expanded="false" aria-controls="gpon">GPON</a>
+                    <a class="btn btn-success" data-bs-toggle="collapse" id="infinet-btn" role="button"
+                        aria-expanded="false" aria-controls="infinet" onclick="show_hidden(this)">InfiNet</a>
+                    <a class="btn btn-warning" data-bs-toggle="collapse" id="lva-btn" role="button"
+                        aria-expanded="false" aria-controls="lva" onclick="show_hidden(this)">ЛВА</a>
+                    <a class="btn btn-primary" data-bs-toggle="collapse" id="mikrotik-btn" role="button"
+                        aria-expanded="false" aria-controls="mikrotik" onclick="show_hidden(this)">MikroTik</a>
+                    <a class="btn btn-primary" data-bs-toggle="collapse" id="addpac-btn" role="button"
+                        aria-expanded="false" aria-controls="addpac" onclick="show_hidden(this)">AddPac</a>
+                    <a class="btn btn-primary" data-bs-toggle="collapse" id="huawei-btn" role="button"
+                        aria-expanded="false" aria-controls="huawei" onclick="show_hidden(this)">Huawei</a>
+                    <a class="btn btn-primary" data-bs-toggle="collapse" id="qtech-btn" role="button"
+                        aria-expanded="false" aria-controls="qtech" onclick="show_hidden(this)">QTECH</a>
+                    <a class="btn btn-primary" data-bs-toggle="collapse" id="tplink-btn" role="button"
+                        aria-expanded="false" aria-controls="tplink" onclick="show_hidden(this)">TP-Link</a>
+                    <a class="btn btn-primary" data-bs-toggle="collapse" id="gpon-btn" role="button"
+                        aria-expanded="false" aria-controls="gpon" onclick="show_hidden(this)">GPON</a>
                 </div><br>
                 <!-- InfiNet -->
                 <div class="collapse multi-collapse" id="infinet">
@@ -623,10 +623,27 @@
                 var oto = document.getElementById("form-oto"),
                     po = document.getElementById("form-po"),
                     tel = document.getElementById("telnet");
+
+                infinet = document.getElementById("infinet");
+                lva = document.getElementById("lva");
+                mikrotik = document.getElementById("mikrotik");
+                addpac = document.getElementById("addpac");
+                huawei = document.getElementById("huawei");
+                qtech = document.getElementById("qtech");
+                tplink = document.getElementById("tplink");
+                gpon = document.getElementById("gpon");
                 switch (id.id) {
                     case "form-oto-btn": sh_hd(oto, po, tel); break;
                     case "form-po-btn": sh_hd(po, oto, tel); break;
                     case "telnet-btn": sh_hd(tel, oto, po); break;
+                    case "infinet-btn": sh_hd_cmd(infinet, lva, mikrotik, addpac, huawei, qtech, tplink, gpon); break;
+                    case "lva-btn": sh_hd_cmd(lva, infinet, mikrotik, addpac, huawei, qtech, tplink, gpon); break;
+                    case "mikrotik-btn": sh_hd_cmd(mikrotik, infinet, lva, addpac, huawei, qtech, tplink, gpon); break;
+                    case "addpac-btn": sh_hd_cmd(addpac, infinet, lva, mikrotik, huawei, qtech, tplink, gpon); break;
+                    case "huawei-btn": sh_hd_cmd(huawei, infinet, lva, mikrotik, addpac, qtech, tplink, gpon); break;
+                    case "qtech-btn": sh_hd_cmd(qtech, infinet, lva, mikrotik, addpac, huawei, tplink, gpon); break;
+                    case "tplink-btn": sh_hd_cmd(tplink, infinet, lva, mikrotik, addpac, huawei, qtech, gpon); break;
+                    case "gpon-btn": sh_hd_cmd(gpon, infinet, lva, mikrotik, addpac, huawei, qtech, tplink); break;
                     default: console.log(id);
                 }
                 function sh_hd(sh, hd1, hd2) {
@@ -638,7 +655,22 @@
                         hd2.setAttribute("class", "multi-collapse collapse");
                     }
                 }
+                function sh_hd_cmd(sh, hd1, hd2, hd3, hd4, hd5, hd6, hd7) {
+                    if (sh.getAttribute("class") == "multi-collapse collapse show") {
+                        sh.setAttribute("class", "multi-collapse collapse");
+                    } else {
+                        sh.setAttribute("class", "multi-collapse collapse show");
+                        hd1.setAttribute("class", "multi-collapse collapse");
+                        hd2.setAttribute("class", "multi-collapse collapse");
+                        hd3.setAttribute("class", "multi-collapse collapse");
+                        hd4.setAttribute("class", "multi-collapse collapse");
+                        hd5.setAttribute("class", "multi-collapse collapse");
+                        hd6.setAttribute("class", "multi-collapse collapse");
+                        hd7.setAttribute("class", "multi-collapse collapse");
+                    }
+                }
             }
+
 
             // Для ОТО
             start_oto_but = document.getElementById("start_oto");
@@ -671,7 +703,7 @@
                 document.getElementById("s_po4").innerText = '- ' + document.getElementById("f_poh4").innerText + ': ' + document.getElementById("f_po4").value
                 document.getElementById("s_po5").innerText = document.getElementById("f_poh5").innerText + ': ' + document.getElementById("f_po5").value
                 document.getElementById("s_po5_1").innerText = '' + document.getElementById("f_poh5_1").innerText + ': \n' + document.getElementById("f_po5_1").value
-                document.getElementById("s_po5_2").innerText = '\n' + document.getElementById("f_poh5_2").innerText + ': \n' + document.getElementById("f_po5_2").value + '\n\n'
+                document.getElementById("s_po5_2").innerText = '\n' + document.getElementById("f_poh5_2").innerText + ': \n' + document.getElementById("f_po5_2").value + ': \n\n'
                 document.getElementById("s_po5_3").innerText = '' + document.getElementById("f_poh5_3").innerText + ': ' + document.getElementById("f_po5_3").value
                 document.getElementById("s_po5_4").innerText = '' + document.getElementById("f_poh5_4").innerText + ': ' + document.getElementById("f_po5_4").value
                 document.getElementById("s_po5_5").innerText = '' + document.getElementById("f_poh5_5").innerText + ': \n' + document.getElementById("f_po5_6").value
