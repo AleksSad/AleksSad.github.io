@@ -15,11 +15,11 @@
     <div class="container">
         <div class="input-group">
             <a class="btn btn-success collapsed" data-bs-toggle="collapse" href="#form-oto" role="button"
-                aria-expanded="false" aria-controls="form-oto">Шаблон для передачи на ОТО</a>
+                aria-expanded="false" aria-controls="form-oto" id="form-oto-btn" onclick="show_hidden(this.id)">Шаблон для передачи на ОТО</a>
             <a class="btn btn-warning" data-bs-toggle="collapse" href="#form-po" role="button" aria-expanded="false"
-                aria-controls="exemple-po">Шаблон для передачи на ПО</a>
+                aria-controls="form-po" id="form-po-btn" onclick="show_hidden(this.id)">Шаблон для передачи на ПО</a>
             <a class="btn btn-primary" data-bs-toggle="collapse" href="#telnet" role="button" aria-expanded="false"
-                aria-controls="telnet">Telnet</a>
+                aria-controls="telnet" id="telnet-btn" onclick="show_hidden(this.id)">Telnet</a>
 
         </div><br>
 
@@ -617,6 +617,27 @@
 
         <script>
             // -----------------------------------------------------------------------------------------------------------------------------------
+
+            //Обработчик сворачивания
+            //Обработчик сворачивания
+            function show_hidden(id){
+                var oto = document.getElementById("form-oto"),
+                    po = document.getElementById("form-po"),
+                    tel = document.getElementById("telnet");
+                    //console.log (`${oto}, ${po}, ${tel}`)
+                switch (id){
+                    case "form-oto-btn": sh_hd(oto, po, tel); break;
+                    case "form-po-btn": sh_hd(po, oto, tel); break;
+                    case "telnet-btn": sh_hd(tel, oto, po); break;
+                    default: console.log(id);
+                }
+                function sh_hd(sh, hd1, hd2){
+                    sh.setAttribute("class","multi-collapse collapse show");
+                    hd1.setAttribute("class","multi-collapse collapse");
+                    hd2.setAttribute("class","multi-collapse collapse");
+                }
+            }
+
 
             // Для ОТО
             start_oto_but = document.getElementById("start_oto");
