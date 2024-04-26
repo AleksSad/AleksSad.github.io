@@ -20,7 +20,6 @@
                 aria-controls="form-po" id="form-po-btn" onclick="show_hidden(this)">Шаблон для передачи на ПО</a>
             <a class="btn btn-primary" data-bs-toggle="collapse" role="button" aria-expanded="false"
                 aria-controls="telnet" id="telnet-btn" onclick="show_hidden(this)">Telnet</a>
-
         </div><br>
 
         <!-- Шаблон для передачи на ОТО -->
@@ -70,15 +69,19 @@
                 <div class="input-group">
                     <button type="button" class="btn btn-success" id="start_oto">Сформировать</button>
                     <button type="button" class="btn btn-secondary" id="clear_oto">Очистить форму</button>
+                    <button type="button" class="btn btn-warning" id="copy_po" onclick="copy_text('s_oto')">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-copy" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V2Zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6ZM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1H2Z">
+                            </path>
+                        </svg>
+                    </button>
                 </div><br>
 
 
 
-                <div id="s_oto1"></div>
-                <div id="s_oto2"></div>
-                <div id="s_oto3"></div>
-                <div id="s_oto4"></div>
-                <div id="s_oto5"></div>
+                <div id="s_oto"></div>
 
             </div>
 
@@ -160,21 +163,20 @@
                 <div class="input-group">
                     <button type="button" class="btn btn-success" id="start_po">Сформировать</button>
                     <button type="button" class="btn btn-secondary" id="clear_po">Очистить форму</button>
+                    <button type="button" class="btn btn-warning" id="copy_po" onclick="copy_text('s_po')">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-copy" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V2Zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6ZM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1H2Z">
+                            </path>
+                        </svg>
+                    </button>
                 </div><br>
-                <div id="s_po1"></div>
-                <div id="s_po2"></div>
-                <div id="s_po3"></div>
-                <div id="s_po4"></div>
-                <div id="s_po5"></div>
-                <div id="s_po5_1"></div>
-                <div id="s_po5_2"></div>
-                <div id="s_po5_3"></div>
-                <div id="s_po5_4"></div>
-                <div id="s_po5_5"></div>
-                <div id="s_po5_6"></div>
+                <div id="s_po"></div>
             </div>
 
         </div>
+        <!-- Telnet -->
         <div class="collapse multi-collapse" id="telnet">
             <div class="card card-body">
                 <!-- Меню -->
@@ -614,175 +616,133 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
             crossorigin="anonymous"></script>
-
-        <script>
-            // -----------------------------------------------------------------------------------------------------------------------------------
-
-            //Обработчик сворачивания
-            function show_hidden(id) {
-                var oto = document.getElementById("form-oto"),
-                    po = document.getElementById("form-po"),
-                    tel = document.getElementById("telnet");
-
-                infinet = document.getElementById("infinet");
-                lva = document.getElementById("lva");
-                mikrotik = document.getElementById("mikrotik");
-                addpac = document.getElementById("addpac");
-                huawei = document.getElementById("huawei");
-                qtech = document.getElementById("qtech");
-                tplink = document.getElementById("tplink");
-                gpon = document.getElementById("gpon");
-                switch (id.id) {
-                    case "form-oto-btn": sh_hd(oto, po, tel); break;
-                    case "form-po-btn": sh_hd(po, oto, tel); break;
-                    case "telnet-btn": sh_hd(tel, oto, po); break;
-                    case "infinet-btn": sh_hd_cmd(infinet, lva, mikrotik, addpac, huawei, qtech, tplink, gpon); break;
-                    case "lva-btn": sh_hd_cmd(lva, infinet, mikrotik, addpac, huawei, qtech, tplink, gpon); break;
-                    case "mikrotik-btn": sh_hd_cmd(mikrotik, infinet, lva, addpac, huawei, qtech, tplink, gpon); break;
-                    case "addpac-btn": sh_hd_cmd(addpac, infinet, lva, mikrotik, huawei, qtech, tplink, gpon); break;
-                    case "huawei-btn": sh_hd_cmd(huawei, infinet, lva, mikrotik, addpac, qtech, tplink, gpon); break;
-                    case "qtech-btn": sh_hd_cmd(qtech, infinet, lva, mikrotik, addpac, huawei, tplink, gpon); break;
-                    case "tplink-btn": sh_hd_cmd(tplink, infinet, lva, mikrotik, addpac, huawei, qtech, gpon); break;
-                    case "gpon-btn": sh_hd_cmd(gpon, infinet, lva, mikrotik, addpac, huawei, qtech, tplink); break;
-                    default: console.log(id);
-                }
-                function sh_hd(sh, hd1, hd2) {
-                    if (sh.getAttribute("class") == "multi-collapse collapse show") {
-                        sh.setAttribute("class", "multi-collapse collapse");
-                    } else {
-                        sh.setAttribute("class", "multi-collapse collapse show");
-                        hd1.setAttribute("class", "multi-collapse collapse");
-                        hd2.setAttribute("class", "multi-collapse collapse");
-                    }
-                }
-                function sh_hd_cmd(sh, hd1, hd2, hd3, hd4, hd5, hd6, hd7) {
-                    if (sh.getAttribute("class") == "multi-collapse collapse show") {
-                        sh.setAttribute("class", "multi-collapse collapse");
-                    } else {
-                        sh.setAttribute("class", "multi-collapse collapse show");
-                        hd1.setAttribute("class", "multi-collapse collapse");
-                        hd2.setAttribute("class", "multi-collapse collapse");
-                        hd3.setAttribute("class", "multi-collapse collapse");
-                        hd4.setAttribute("class", "multi-collapse collapse");
-                        hd5.setAttribute("class", "multi-collapse collapse");
-                        hd6.setAttribute("class", "multi-collapse collapse");
-                        hd7.setAttribute("class", "multi-collapse collapse");
-                    }
-                }
-            }
-
-
-            // Для ОТО
-            start_oto_but = document.getElementById("start_oto");
-            start_oto_but.addEventListener("click", form_oto);
-            function form_oto() {
-                document.getElementById("s_oto1").innerText = '- ' + document.getElementById("f_otoh1").innerText + ': ' + document.getElementById("f_oto1").value
-                document.getElementById("s_oto2").innerText = '- ' + document.getElementById("f_otoh2").innerText + ': ' + document.getElementById("f_oto2").value
-                switch (document.getElementById("f_oto3_3").value) {
-                    case '1': document.getElementById("s_oto3").innerText = '- ' + document.getElementById("f_otoh3").innerText + ': с ' + document.getElementById("f_oto3_1").value + ' до ' + document.getElementById("f_oto3_2").value; break;
-                    case '2': document.getElementById("s_oto3").innerText = '- ' + document.getElementById("f_otoh3").innerText + ': Круглосуточно'; break;
-                }
-                //document.getElementById("s_oto3").innerText = '- ' + document.getElementById("f_otoh3").innerText + ': с ' + document.getElementById("f_oto3_1").value + ' до ' + document.getElementById("f_oto3_2").value
-                document.getElementById("s_oto4").innerText = '- ' + document.getElementById("f_otoh4").innerText + ': ' + document.getElementById("f_oto4").value
-                document.getElementById("s_oto5").innerText = '- ' + document.getElementById("f_otoh5").innerText + ': \n' + document.getElementById("f_oto5").value
-            }
-            // -----------------------------------------------------------------------------------------------------------------------------------
-
-            // Для ПО
-            start_po_but = document.getElementById("start_po");
-            start_po_but.addEventListener("click", form_po);
-            function form_po() {
-                // 
-                document.getElementById("s_po1").innerText = '- ' + document.getElementById("f_poh1").innerText + ': ' + document.getElementById("f_po1").value
-                document.getElementById("s_po2").innerText = '- ' + document.getElementById("f_poh2").innerText + ': ' + document.getElementById("f_po2").value
-                switch (document.getElementById("f_po3_3").value) {
-                    case '1': document.getElementById("s_po3").innerText = '- ' + document.getElementById("f_poh3").innerText + ': с ' + document.getElementById("f_po3_1").value + ' до ' + document.getElementById("f_po3_2").value; break;
-                    case '2': document.getElementById("s_po3").innerText = '- ' + document.getElementById("f_poh3").innerText + ': Круглосуточно'; break;
-                }
-                // document.getElementById("s_po3").innerText = '- ' + document.getElementById("f_poh3").innerText + ': с ' + document.getElementById("f_po3_1").value + ' до ' + document.getElementById("f_po3_2").value
-                document.getElementById("s_po4").innerText = '- ' + document.getElementById("f_poh4").innerText + ': ' + document.getElementById("f_po4").value
-                document.getElementById("s_po5").innerText = document.getElementById("f_poh5").innerText + ': ' + document.getElementById("f_po5").value
-                document.getElementById("s_po5_1").innerText = '' + document.getElementById("f_poh5_1").innerText + ': \n' + document.getElementById("f_po5_1").value
-                document.getElementById("s_po5_2").innerText = '\n' + document.getElementById("f_poh5_2").innerText + ': \n' + document.getElementById("f_po5_2").value + '\n'
-                document.getElementById("s_po5_3").innerText = '' + document.getElementById("f_poh5_3").innerText + ': ' + document.getElementById("f_po5_3").value
-                document.getElementById("s_po5_4").innerText = '' + document.getElementById("f_poh5_4").innerText + ': ' + document.getElementById("f_po5_4").value
-                document.getElementById("s_po5_5").innerText = '' + document.getElementById("f_poh5_5").innerText + ': \n' + document.getElementById("f_po5_6").value
-                document.getElementById("s_po5_6").innerText = '\n-После проведения работ необходимо проверить восстановление услуг и работу оборудования, используя средства доступные в @enforta_helper_bot, получить подтверждение от клиента (при возможности)\n-При необходимости сдавать ремонт на номер +73422462288'
-                //console.log (document.getElementById("f_po5_5").value)
-
-
-            }
-            // -----------------------------------------------------------------------------------------------------------------------------------
-
-            // Очистить ОТО
-            clear_oto_but = document.getElementById("clear_oto");
-            clear_oto_but.addEventListener("click", clear_oto);
-            function clear_oto() {
-                document.getElementById("f_oto1").value = "";
-                document.getElementById("f_oto2").value = "звонок";
-                document.getElementById("f_oto3_1").value = "";
-                document.getElementById("f_oto3_2").value = "";
-                document.getElementById("f_oto3_3").value = "1";
-                document.getElementById("f_oto4").value = "";
-                document.getElementById("f_oto5").value = "";
-
-                document.getElementById("s_oto1").innerHTML = "";
-                document.getElementById("s_oto2").innerHTML = "";
-                document.getElementById("s_oto3").innerHTML = "";
-                document.getElementById("s_oto4").innerHTML = "";
-                document.getElementById("s_oto5").innerHTML = "";
-
-            }
-            // -----------------------------------------------------------------------------------------------------------------------------------
-
-            // Очистить ПО
-            clear_po_but = document.getElementById("clear_po");
-            clear_po_but.addEventListener("click", clear_po);
-            function clear_po() {
-                console.log("Suck"); f_po5_1
-                document.getElementById("f_po1").value = "";
-                document.getElementById("f_po2").value = "звонок";
-                document.getElementById("f_po3_1").value = "";
-                document.getElementById("f_po3_2").value = "";
-                document.getElementById("f_po3_3").value = "1";
-                document.getElementById("f_po4").value = "";
-                document.getElementById("f_po5").value = "";
-                document.getElementById("f_po5_1").value = "";
-                document.getElementById("f_po5_2").value = "";
-                document.getElementById("f_po5_3").value = "";
-                document.getElementById("f_po5_4").value = "БП, пачкорды, ноутбук, стремянка";
-                document.getElementById("f_po5_5").value = "0";
-                document.getElementById("f_po5_6").value = "";
-
-                document.getElementById("s_po1").innerHTML = "";
-                document.getElementById("s_po2").innerHTML = "";
-                document.getElementById("s_po3").innerHTML = "";
-                document.getElementById("s_po4").innerHTML = "";
-                document.getElementById("s_po5").innerHTML = "";
-                document.getElementById("s_po5_1").innerHTML = "";
-                document.getElementById("s_po5_2").innerHTML = "";
-                document.getElementById("s_po5_3").innerHTML = "";
-                document.getElementById("s_po5_4").innerHTML = "";
-                document.getElementById("s_po5_5").innerHTML = "";
-                document.getElementById("s_po5_6").innerHTML = "";
-            }
-            // -----------------------------------------------------------------------------------------------------------------------------------
-
-            // Меню ПО "Действия при ремонте"
-            function down_menu(value) {
-                switch (value) {
-                    case '0': document.getElementById("f_po5_6").value = '\n'; break;
-                    case '1': document.getElementById("f_po5_6").value = '- Проверить оборудование, ЭП, коммутацию\n- Перезагрузить\n- При необходимости заменить оборудование/БП/кабель\n- Сверить сетевые реквизиты\n- Демонстрация клиенту'; break;
-                    case '2': document.getElementById("f_po5_6").value = '- Проверить ЭП на устройстве  с/н , коммутации, в случае необходимости замена.\n- Замена симкарты и ЗЛТ антенны,в случае необходимости\n- Юстировка ZLT для хорошего уровня сигнала\n- Удаленная проверка\n- Демонстрация клиенту.'; break;
-                    case '3': document.getElementById("f_po5_6").value = '- Проверка наличия питания перегрузка,проверка коммутации, настроек, замена оборудования при необходимости\n- Проверка Видимости до КРПТ сектора, юстировка\n- Замена СРЕ в порядке IDU-кабель-ODU\n- Удаленная проверка\n- Установка ХР,если не будет возможности поднять основной канал.\n- Демонстрация клиенту'; break;
-                    case '4': document.getElementById("f_po5_6").value = '- Проверка прямой видимости до БС, юстировка, перенос крепления.\n- Проверка наличия питания на  перегрузка,проверка коммутации, настроек, замена оборудования при необходимости\n- При необходимости замена ODU\n- Удаленная проверка\n- Демонстрация клиенту'; break;
-                    case '5': document.getElementById("f_po5_6").value = '- Проверка наличия питания на РМО перезагрузка, проверка коммутации, настроек\n- Замена кабельной трассы до камеры в случае необходимости и самой камеры\n- Замена свитча в случае необходимости, от которого коммутируются камеры\n- Удаленная проверка\n- Демонстрация клиенту'; break;
-                }
-            }
-            // -----------------------------------------------------------------------------------------------------------------------------------
-
-        </script>
     </div>
 </body>
+<script>
+    //Копировать шаблон в буфер
+    function copy_text(form) { navigator.clipboard.writeText(document.getElementById(form).innerText.trim()) }
+    // -----------------------------------------------------------------------------------------------------------------------------------
+
+    //Обработчик сворачивания
+    function show_hidden(id) {
+        let menu = {
+            "main": ["form-oto", "form-po", "telnet"],
+            "telnet": ["infinet", "lva", "mikrotik", "addpac", "huawei", "qtech", "tplink", "gpon"]
+        },
+            class_show = "multi-collapse collapse show",
+            class_hide = "multi-collapse collapse";
+
+        switch (id.id) {
+            case "form-oto-btn": show_hide("form-oto", menu.main); break;
+            case "form-po-btn": show_hide("form-po", menu.main); break;
+            case "telnet-btn": show_hide("telnet", menu.main); break;
+            case "infinet-btn": show_hide("infinet", menu.telnet); break;
+            case "lva-btn": show_hide("lva", menu.telnet); break;
+            case "mikrotik-btn": show_hide("mikrotik", menu.telnet); break;
+            case "addpac-btn": show_hide("addpac", menu.telnet); break;
+            case "huawei-btn": show_hide("huawei", menu.telnet); break;
+            case "qtech-btn": show_hide("qtech", menu.telnet); break;
+            case "tplink-btn": show_hide("tplink", menu.telnet); break;
+            case "gpon-btn": show_hide("gpon", menu.telnet); break;
+        }
+
+        function show_hide(elem, array) {
+            let index = array.indexOf(elem);
+            array.forEach(function (elem, i) {
+                (i == index) ?
+                    ((document.getElementById(elem).getAttribute("class") == class_show) ?
+                        document.getElementById(elem).setAttribute("class", class_hide) :
+                        document.getElementById(elem).setAttribute("class", class_show)
+                    ) : document.getElementById(elem).setAttribute("class", class_hide);
+            });
+        };
+    }
+    // -----------------------------------------------------------------------------------------------------------------------------------
+    
+    // Для ОТО
+    document.getElementById("start_oto").addEventListener("click", () => {
+        let output_oto = "";
+        output_oto = `- ${document.getElementById("f_otoh1").innerText}: ${document.getElementById("f_oto1").value}\n`;
+        output_oto += `- ${document.getElementById("f_otoh2").innerText}: ${document.getElementById("f_oto2").value}\n`
+        switch (document.getElementById("f_oto3_3").value) {
+            case '1': output_oto += `- ${document.getElementById("f_otoh3").innerText}: с ${document.getElementById("f_oto3_1").value} до ${document.getElementById("f_oto3_2").value}\n`; break;
+            case '2': output_oto += `- ${document.getElementById("f_otoh3").innerText}: Круглосуточно\n`; break;
+        }
+        output_oto += `- ${document.getElementById("f_otoh4").innerText}: ${document.getElementById("f_oto4").value}\n`
+        output_oto += `- ${document.getElementById("f_otoh5").innerText}: \n${document.getElementById("f_oto5").value}\n`
+        document.getElementById("s_oto").innerText = output_oto;
+    });
+    // -----------------------------------------------------------------------------------------------------------------------------------
+
+    // Для ПО
+    document.getElementById("start_po").addEventListener("click", () => {
+        let output_po = "";
+        output_po = `- ${document.getElementById("f_poh1").innerText}: ${document.getElementById("f_po1").value}\n`
+        output_po += `- ${document.getElementById("f_poh2").innerText}: ${document.getElementById("f_po2").value}\n`
+        switch (document.getElementById("f_po3_3").value) {
+            case '1': output_po += `- ${document.getElementById("f_poh3").innerText}: с ${document.getElementById("f_po3_1").value} до ${document.getElementById("f_po3_2").value}\n`; break;
+            case '2': output_po += `- ${document.getElementById("f_poh3").innerText}: Круглосуточно\n`; break;
+        }
+        output_po += `- ${document.getElementById("f_poh4").innerText}: ${document.getElementById("f_po4").value}\n`
+        output_po += `${document.getElementById("f_poh5").innerText}: ${document.getElementById("f_po5").value}\n`
+        output_po += `${document.getElementById("f_poh5_1").innerText}:\n ${document.getElementById("f_po5_1").value}\n`
+        output_po += `\n${document.getElementById("f_poh5_2").innerText}:\n${document.getElementById("f_po5_2").value}\n\n`
+        output_po += `${document.getElementById("f_poh5_3").innerText}: ${document.getElementById("f_po5_3").value}\n`
+        output_po += `${document.getElementById("f_poh5_4").innerText}: ${document.getElementById("f_po5_4").value}\n`
+        output_po += `${document.getElementById("f_poh5_5").innerText}:\n${document.getElementById("f_po5_6").value}\n`
+        output_po += '\n-После проведения работ необходимо проверить восстановление услуг и работу оборудования, используя средства доступные в @enforta_helper_bot, получить подтверждение от клиента (при возможности)\n-При необходимости сдавать ремонт на номер +73422462288'
+        document.getElementById("s_po").innerText = output_po;
+    });
+    // -----------------------------------------------------------------------------------------------------------------------------------
+
+    // Очистить ОТО
+    document.getElementById("clear_oto").addEventListener("click", () => {
+        document.getElementById("f_oto1").value = "";
+        document.getElementById("f_oto2").value = "звонок";
+        document.getElementById("f_oto3_1").value = "";
+        document.getElementById("f_oto3_2").value = "";
+        document.getElementById("f_oto3_3").value = "1";
+        document.getElementById("f_oto4").value = "";
+        document.getElementById("f_oto5").value = "";
+
+        document.getElementById("s_oto").innerText = "";
+
+    });
+    // -----------------------------------------------------------------------------------------------------------------------------------
+
+    // Очистить ПО
+    document.getElementById("clear_po").addEventListener("click", () => {
+        document.getElementById("f_po1").value = "";
+        document.getElementById("f_po2").value = "звонок";
+        document.getElementById("f_po3_1").value = "";
+        document.getElementById("f_po3_2").value = "";
+        document.getElementById("f_po3_3").value = "1";
+        document.getElementById("f_po4").value = "";
+        document.getElementById("f_po5").value = "";
+        document.getElementById("f_po5_1").value = "";
+        document.getElementById("f_po5_2").value = "";
+        document.getElementById("f_po5_3").value = "";
+        document.getElementById("f_po5_4").value = "БП, пачкорды, ноутбук, стремянка";
+        document.getElementById("f_po5_5").value = "0";
+        document.getElementById("f_po5_6").value = "";
+
+        document.getElementById("s_po").innerText = "";
+    });
+    // -----------------------------------------------------------------------------------------------------------------------------------
+
+    // Меню ПО "Действия при ремонте"
+    function down_menu(value) {
+        switch (value) {
+            case '0': document.getElementById("f_po5_6").value = '\n'; break;
+            case '1': document.getElementById("f_po5_6").value = '- Проверить оборудование, ЭП, коммутацию\n- Перезагрузить\n- При необходимости заменить оборудование/БП/кабель\n- Сверить сетевые реквизиты\n- Демонстрация клиенту'; break;
+            case '2': document.getElementById("f_po5_6").value = '- Проверить ЭП на устройстве  с/н , коммутации, в случае необходимости замена.\n- Замена симкарты и ЗЛТ антенны,в случае необходимости\n- Юстировка ZLT для хорошего уровня сигнала\n- Удаленная проверка\n- Демонстрация клиенту.'; break;
+            case '3': document.getElementById("f_po5_6").value = '- Проверка наличия питания перегрузка,проверка коммутации, настроек, замена оборудования при необходимости\n- Проверка Видимости до КРПТ сектора, юстировка\n- Замена СРЕ в порядке IDU-кабель-ODU\n- Удаленная проверка\n- Установка ХР,если не будет возможности поднять основной канал.\n- Демонстрация клиенту'; break;
+            case '4': document.getElementById("f_po5_6").value = '- Проверка прямой видимости до БС, юстировка, перенос крепления.\n- Проверка наличия питания на  перегрузка,проверка коммутации, настроек, замена оборудования при необходимости\n- При необходимости замена ODU\n- Удаленная проверка\n- Демонстрация клиенту'; break;
+            case '5': document.getElementById("f_po5_6").value = '- Проверка наличия питания на РМО перезагрузка, проверка коммутации, настроек\n- Замена кабельной трассы до камеры в случае необходимости и самой камеры\n- Замена свитча в случае необходимости, от которого коммутируются камеры\n- Удаленная проверка\n- Демонстрация клиенту'; break;
+        }
+    }
+    // -----------------------------------------------------------------------------------------------------------------------------------
+
+</script>
 
 </html>
