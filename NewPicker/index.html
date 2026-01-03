@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>NewPicker</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+
+<body>
+	<header data-bs-theme="dark" style="padding-bottom: 1%;">
+		<nav class="navbar" style="background-color:#1d3653;">
+			<div class="container input-group">
+				<p class="h3" style="color: azure;">NewPicker</p>
+			</div>
+		</nav>
+	</header>
+	<div class="container-fluid">
+		<div class="row">
+			<!-- КОЛОНКА 1 -->
+			<div class="col-3 text-center">
+				<div class="form-floating">
+					<textarea class="form-control" id="floatingTextarea2" style="height: 30vh"></textarea>
+					<label for="floatingTextarea2">Используй данный блок по своему усмотрению</label>
+					<hr>
+				</div>
+				<b>Конвертер</b>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+					stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+					class="icon icon-tabler icons-tabler-outline icon-tabler-file-type-pdf">
+					<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+					<path d="M14 3v4a1 1 0 0 0 1 1h4" />
+					<path d="M5 12v-7a2 2 0 0 1 2 -2h7l5 5v4" />
+					<path d="M5 18h1.5a1.5 1.5 0 0 0 0 -3h-1.5v6" />
+					<path d="M17 18h2" />
+					<path d="M20 15h-3v6" />
+					<path d="M11 15v6h1a2 2 0 0 0 2 -2v-2a2 2 0 0 0 -2 -2h-1" />
+				</svg>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+					stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+					class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-narrow-right">
+					<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+					<path d="M5 12l14 0" />
+					<path d="M15 16l4 -4" />
+					<path d="M15 8l4 4" />
+				</svg>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+					stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+					class="icon icon-tabler icons-tabler-outline icon-tabler-file-type-jpg">
+					<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+					<path d="M14 3v4a1 1 0 0 0 1 1h4" />
+					<path d="M5 12v-7a2 2 0 0 1 2 -2h7l5 5v4" />
+					<path d="M11 18h1.5a1.5 1.5 0 0 0 0 -3h-1.5v6" />
+					<path d="M20 15h-1a2 2 0 0 0 -2 2v2a2 2 0 0 0 2 2h1v-3" />
+					<path d="M5 15h3v4.5a1.5 1.5 0 0 1 -3 0" />
+				</svg>
+				<input class="form-control form-control-sm" type="file" id="pdf-upload" accept="application/pdf"><br>
+				<div id="output"></div>
+				<hr>
+				<b>Поиск CMS</b>
+				<input class="form-control form-control-sm" type="file" id="xlsx_cms" onchange="get_data_cms()"
+					accept=".xls, .xlsx">
+				<div id="alertp"></div><br>
+				<div class="input-group input-group-sm mb-3">
+					<input type="text" class="form-control" placeholder="Поиск по адресу" aria-label="Поиск по адресу"
+						aria-describedby="button-addon2" id="search_cms">
+					<button class="btn btn-outline-secondary" type="button" id="button_search_cms">Найти</button>
+				</div>
+				<div id="cms_list" class="text-start">
+
+				</div>
+				<hr>
+			</div>
+			<!-- КОЛОНКА 2 -->
+			<div class="col-6">
+				<div class="form-floating">
+					<textarea class="form-control" id="TextareaPattern" style="height: 80vh"></textarea>
+					<label for="TextareaPattern">Выбирай шаблоны</label>
+					<hr>
+				</div>
+			</div>
+			<!-- КОЛОНКА 3 -->
+			<div class="col-3">
+				<div class="d-grid gap-2">
+					<button type="button" id="button_1" title="Наебенился микрот с сим картой" class="btn btn-primary"
+						onclick="sendTextareaPattern(this.id)">Наебенился микрот с сим
+						картой
+					</button>
+					<button type="button" id="button_2" title="Не фурычит CPE" class="btn btn-primary"
+						onclick="sendTextareaPattern(this.id)">Не фурычит CPE
+					</button>
+					<button type="button" id="button_3" title="чит CPE" class="btn btn-primary"
+						onclick="sendTextareaPattern(this.id)">Низкое Радио
+					</button>
+					<button type="button" id="button_4" title="Задание на ремонт" class="btn btn-primary"
+						onclick="sendTextareaPattern(this.id)">ДЕЗ <br> РТК
+					</button>
+					<button type="button" id="button_5" title="Недоступность ВК, сдача в РТК" class="btn btn-primary"
+						onclick="sendTextareaPattern(this.id)">Видеонаблюдение РТК
+						Недоступность
+					</button>
+					<button type="button" id="button_6" title="Снижено качество ВК, сдача в РТК" class="btn btn-primary"
+						onclick="sendTextareaPattern(this.id)">Видеонаблюдение РТК
+						Снижено качество
+					</button>
+					<hr>
+
+					<button class="btn btn-secondary" id="btn-clipboard" data-clipboard-action="copy"
+						data-clipboard-target="#TextareaPattern">Скопировать</button>
+					<button type="button" id="clearPattern" title="стереть" class="btn btn-danger">Очистить</button>
+					<hr>
+					<b class="text-center"><del>Поиск Контактов</del></b>
+					<figure>
+						<figcaption class="blockquote-footer">
+							Разработка блока на паузе
+						</figcaption>
+					</figure>
+					<input class="form-control form-control-sm" type="file" id="xlsx_contacts"
+						onchange="get_data_contacts()" accept=".xls, .xlsx" disabled>
+					<div id="alertpc"></div><br>
+					<div class="input-group input-group-sm mb-3">
+						<input type="text" class="form-control" placeholder="Поиск по адресу"
+							aria-label="Поиск по адресу" aria-describedby="button-addon2" id="search_contacts" disabled>
+						<button class="btn btn-outline-secondary" type="button" id="button_search_contacts"
+							disabled>Найти</button>
+					</div>
+					<div id="contacts_list">
+
+					</div>
+					<hr>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+<script src="https://alekssad.github.io/libraries/xlsx-to-json.js"></script>
+<!-- Подключаем PDF.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+<script> // СКРИПТ PDF->JPG
+	const fileInput = document.getElementById('pdf-upload');
+	var output = document.getElementById('output');
+	fileInput.addEventListener('change', async (event) => {
+		const file = event.target.files[0];
+		if (!file) return;
+		const fileReader = new FileReader();
+		fileReader.onload = async function () {
+			const typedarray = new Uint8Array(this.result);
+
+			const pdf = await pdfjsLib.getDocument({ data: typedarray }).promise;
+
+			for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
+				const page = await pdf.getPage(pageNumber);
+				const scale = 2;
+				const viewport = page.getViewport({ scale });
+
+				const canvas = document.createElement('canvas');
+				const context = canvas.getContext('2d');
+				canvas.width = viewport.width;
+				canvas.height = viewport.height;
+
+				const renderContext = {
+					canvasContext: context,
+					viewport: viewport,
+				};
+
+				await page.render(renderContext).promise;
+
+				// Получаем base64 изображение JPG
+				const imgData = canvas.toDataURL('image/jpeg', 1.0);
+
+				// Создаем превью и ссылку на скачивание
+				const img = document.createElement('img');
+				img.src = imgData;
+				img.style.maxWidth = "100px";
+				//output.appendChild(img);
+
+				const downloadLink = document.createElement('a');
+				downloadLink.href = imgData;
+				downloadLink.classList = `btn btn-outline-primary btn-sm`;
+				downloadLink.download = `${file.name.replace('.pdf', '')}-${pageNumber}.jpg`;
+				downloadLink.textContent = `Скачать страницу ${pageNumber}`;
+				downloadLink.style = `border: 1 px red`
+				output.appendChild(downloadLink);
+				output.appendChild(document.createElement('br'));
+			}
+		};
+		output.innerHTML = '';
+
+		fileReader.readAsArrayBuffer(file);
+	});
+</script>
+
+<script>
+	var data_cms,
+		search_cms = document.getElementById("search_cms"),
+		cms_list = document.getElementById("cms_list");
+
+	function get_data_cms() {
+		document.getElementById("alertp").innerHTML = "Загрузка файла..."
+
+		readXlsxFile(xlsx_cms.files[0]).then(function (excel) {
+			data_cms = excel;
+			view_cms(data_cms);
+			document.getElementById("alertp").innerHTML = "Файл загружен!"
+			setTimeout(() => { document.getElementById("alertp").innerHTML = ""; }, 3000)
+		})
+	}
+
+	function view_cms(data) {
+		document.getElementById("button_search_cms").addEventListener('click', () => {
+			cms_list.innerHTML = ``;
+			data.forEach((element) => {
+
+				// console.log(element[0].indexOf(search_cms.value))
+				if ((element[0].toLowerCase().indexOf(search_cms.value.toLowerCase()) != -1) && (search_cms.value != '')) {
+					cms_list.innerHTML += `<li>${element[0]} - <b>${element[1]}</b></li>`
+				}
+			}
+			)
+		});
+	}
+</script>
+
+
+<script>
+	var data_contacts,
+		search_contacts = document.getElementById("search_contacts"),
+		contacts_list = document.getElementById("contacts_list");
+
+	function get_data_contacts() {
+		document.getElementById("alertp").innerHTML = "Загрузка файла..."
+
+		readXlsxFile(xlsx_contacts.files[0]).then(function (excel) {
+			data_contacts = excel;
+			view_contacts(data_contacts);
+			document.getElementById("alertpc").innerHTML = "Файл загружен!"
+			setTimeout(() => { document.getElementById("alertpc").innerHTML = ""; }, 3000)
+		})
+	}
+
+	function view_contacts(data) {
+		document.getElementById("button_search_contacts").addEventListener('click', () => {
+			contacts_list.innerHTML = ``;
+			data.forEach((element) => {
+
+				// console.log(element[0].indexOf(search_contacts.value))
+				if ((element[0].toLowerCase().indexOf(search_contacts.value.toLowerCase()) != -1) && (search_contacts.value != '')) {
+					contacts_list.innerHTML += `<li>${element[0]} - <b>${element[1]}</b></li>`
+				}
+			}
+			)
+		});
+	}
+</script>
+
+<script> // СКРИПТ КНОПОК
+	var patterns = {
+		"button_1": "- Подключен напрямую: \n- Линк в сторону Клиента: \n- Статус подключения на ПК: \n- Сетевые реквизиты: \n- Доступность ресурсов:\n",
+		"button_2": "Задание на ремонт в рамках ТТ (вставить номер) \n1. Место проведения работ: (вставить адрес) \n2. Устройство: \n3. Основные данные по проверке и что необходимо с собой иметь:запасной комплект , ноутбук, патчкорд, запас кабелей, разъёмов. \n4. Действия при ремонте: \na. проверка Видимости до БС сектора, крепления, исправность портов на поэ, лини до клиента. \nb. при необходимости замена СРЕ в порядке IDU-кабель-ODU. \nc. проверка восстановления услуг с помощью @enforta_helper_bot. \nd. получить подтверждение от клиента. \n5. Ответственный инженер:\n- 73422462288",
+		"button_3": "Задание на ремонт в рамках ТТ (вставить номер) \n1. Место проведения работ: (вставить адрес) \n2. Устройство: \n3. Основные данные по проверке и что необходимо с собой иметь:запасной комплект , ноутбук, патчкорд, запас кабелей, разъёмов. \n4. Действия при ремонте: \na. Произвести юстировку CPE до соответствующих параметров. \nb. Протестировать. \nc.  Если не поможет юстировка СРЕ, Поиск локальной помехи и попытка ее устранить \ перенести CPE. \nd. Протестировать. \ne. Если потребуется замена. \nf. проверка восстановления услуг с помощью @enforta_helper_bot. \ng. получить подтверждение от клиента. \n5. Ответственный инженер:\n- 73422462288",
+		"button_4": "- ID камеры: \n- IP: \n- Город / адрес: \n- Тип неисправности: \n- Контактное лицо: \nПосле выполнения работ по замене или настройке камеры, связываться Гусевым Сергеем Андреевичем вн 43909, для удаленной диагностики работоспособности устройства и юстировки. \n",
+		"button_5": "Недоступны ВК, просьба проверить работу канала. ЭП есть, оборудование перезагрузить нет возможности. По результатам проверки дать ответ в переписке. \n- ID: \n- IP: \n- Адрес: \n- CMS: \n",
+		"button_6": "Фиксируем потери до камеры, просьба проверить работу канала. По результатам проверки дать ответ в переписке. \n- ID: \n- IP: \n- Адрес: \n- CMS: \n",
+	}
+	var TextareaPattern = document.getElementById("TextareaPattern");
+	function sendTextareaPattern(button) {
+		let len = TextareaPattern.value.length,
+			start = TextareaPattern.selectionStart,
+			end = TextareaPattern.selectionEnd,
+			sel = TextareaPattern.value.substring(start, end),
+			replace = patterns[button];
+		TextareaPattern.value = TextareaPattern.value.substring(0, start) + replace + TextareaPattern.value.substring(end, len);
+	}
+	document.getElementById("btn-clipboard").addEventListener('click', () => { document.getElementById("TextareaPattern").select(); document.execCommand("copy"); });
+	document.getElementById("clearPattern").addEventListener('click', () => { TextareaPattern.value = ""; });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+	crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+	integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+	crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+	integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+	crossorigin="anonymous"></script>
+
+</html>
